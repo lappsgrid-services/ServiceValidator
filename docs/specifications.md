@@ -10,6 +10,13 @@ The tool should be implemented in Java. First we can run it from the command lin
 
 The input could be a list of services (specified as a URL), the tool could also ping the service manager for the list of services (see https://github.com/lappsgrid-incubator/groovlets).
 
+The following curl commands will get some json with information about services:
+
+```
+curl http://api.lappsgrid.org/services/brandeis
+curl http://api.lappsgrid.org/services/vassar
+```
+
 The tool will need example LIF input, these will be created manually and will be put in `src/main/resources`.
 
 
