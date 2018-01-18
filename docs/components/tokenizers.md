@@ -80,4 +80,4 @@ The Brandeis version of the Stanford tokenizer creates the following output
 }
 ```
 
-This file is saved in this directory as [karen.sent.tok.lif](karen.sent.tok.lif). Note that here too there are no view identifiers.
+Note that here too there are no view identifiers.

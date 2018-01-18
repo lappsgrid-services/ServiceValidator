@@ -90,5 +90,3 @@ Differences:
 1. In the metadata the Brandeis version uses `splitter:stanford` for the type and the Vassar version uses `sentence:stanford`. This is part of a bigger issue with inconsistent use of the type property.
 1. The Vassar version adds a `label` property to the annotation. This use is correct according to the current schema at http://vocab.lappsgrid.org/schema/lif-schema.json, but the `label` property is not defined in the vocabulary and probably not useful here. Also, we have discussed removing `type` and `label` from the top level and adding them to the feature dictionary instead if needed.
 1. The Brandeis version adds a `sentence` feature to the feature dictionary of the annotation. Another optional feature that is not in the vocabulary.
-
-For the purposes of creating LIF input I took the Brandeis version.
