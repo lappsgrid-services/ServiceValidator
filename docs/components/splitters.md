@@ -8,7 +8,7 @@ Consistency checking on all splitters used on http://galaxy.lappsgrid.org/ and h
 There are nine unique sentence splitters on the Brandeis and Vassar nodes of the grid (limiting ourselves to those used at http://galaxy.lappsgrid.org/ and http://jetstream.lappsgrid.org/). Here is a table with observations on all of them. The b or v in the service column indicates whether the service runs on the Brandeis or Vassar server.
 
 service                                         | requires    | produces  | other
----                                             | ---         | ---       |
+---                                             | ---         | ---       | ---
 vassar stanford.splitter_2.0.0                  | &check;     | &check;   |
 vassar stanford.splitter_2.1.0-SNAPSHOT         |             |           |
 brandeis stanfordnlp.splitter_2.0.4             |             |           |
