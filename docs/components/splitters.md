@@ -1,6 +1,38 @@
 # Sentence Splitters
 
-Consistency checking on all splitters used on  http://galaxy.lappsgrid.org/ and http://jetstream.lappsgrid.org/.
+Consistency checking on all splitters used on http://galaxy.lappsgrid.org/ and http://jetstream.lappsgrid.org/. The first section below has the final observations on all splitters, subsequent sections go into the process followed to get there.
+
+
+## Summary of Observations
+
+There are nine unique sentence splitters on the Brandeis and Vassar nodes of the grid (limiting ourselves to those used at http://galaxy.lappsgrid.org/ and http://jetstream.lappsgrid.org/). Here is a table with observations on all of them. The b or v in the service column indicates whether the service runs on the Brandeis or Vassar server.
+
+service                                         | requires    | produces  | other
+---                                             | ---         | ---       |
+vassar stanford.splitter_2.0.0                  | &check;     | &check;   |
+vassar stanford.splitter_2.1.0-SNAPSHOT         |             |           |
+brandeis stanfordnlp.splitter_2.0.4             |             |           |
+vassar gate.splitter_2.2.0                      |             |           |
+vassar gate.splitter_2.3.0                      |             |           |
+brandeis opennlp.splitter_2.0.3                 |             |           |
+vassar LingpipeSentenceSplitter                 |             |           |
+brandeis uima.dkpro.stanfordnlp.splitter_0.0.1  |             |           |
+brandeis uima.dkpro.opennlp.splitter_0.0.1      |             |           |
+
+The columns are to be interpreted as follows:
+
+- requires: tool requirements from metadata match its behavior when given input
+- produces: what the tool produces matches what is specified in the metadata
+- other: any other observations
+
+Check marks indicate all is well, if not look up the error code in the list below.
+
+Error codes:
+
+1. There was
+
+2. Well, dummy, ...
+
 
 
 ## Rounding up the Splitters
@@ -19,13 +51,13 @@ Here's the relevant tool config section:
 
 ```
 <section id="splitters" name="Sentence Splitters">
-	<tool file="stanford/vassar.splitter_2.0.0.xml"/>
-	<tool file='stanford/brandeis.splitter.xml' />
-	<tool file="gate/gate.splitter_2.2.0.xml"/>
-	<tool file='opennlp/opennlp.splitter.xml' />
-	<tool file="lingpipe/vassar.splitter_1.0.0.xml"/>
-	<tool file='dkpro/dkpro.stanford.splitter.xml'/>
-	<tool file='dkpro/dkpro.opennlp.splitter.xml'/>
+  <tool file="stanford/vassar.splitter_2.0.0.xml"/>
+  <tool file='stanford/brandeis.splitter.xml' />
+  <tool file="gate/gate.splitter_2.2.0.xml"/>
+  <tool file='opennlp/opennlp.splitter.xml' />
+  <tool file="lingpipe/vassar.splitter_1.0.0.xml"/>
+  <tool file='dkpro/dkpro.stanford.splitter.xml'/>
+  <tool file='dkpro/dkpro.opennlp.splitter.xml'/>
 </section>
 ```
 
@@ -243,7 +275,7 @@ Produces
 - http://vocab.lappsgrid.org/Sentence
 ```
 
-Let's make this more compact:
+Let's make this more compact (the `b` or `v` in the service column in the table above indicates whether the service runs on the Brandeis or Vassar server):
 
 service                                 | requires                | produces
 --------                                |----------               |---------
@@ -256,6 +288,8 @@ b opennlp.splitter_2.0.3                | jsonld#lif              | jsonld#lif, 
 v LingpipeSentenceSplitter              | text, jsonld#lif        | jsonld#lif, Sentence
 b uima.dkpro.stanfordnlp.splitter_0.0.1 | jsonld#lif, Sentence    | jsonld#lif, Sentence
 b uima.dkpro.opennlp.splitter_0.0.1     | jsonld#lif, Sentence    | jsonld#lif, Sentence
+
+
 
 # Running the Splitters
 
