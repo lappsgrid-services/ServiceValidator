@@ -65,3 +65,4 @@ Other notes:
 - For the type the Vassar version focuses on the tag set while the Brandeis version focuses on the module. The former should be added in a `posTagSet` property.
 - Note again the `label` property.
 - The `@type` property on the Brandeis version is wrong.
+- The Vassar tagger loses the @context attribute

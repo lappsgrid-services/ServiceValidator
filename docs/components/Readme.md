@@ -12,3 +12,9 @@ The following services were tested or will be tested:
 - Coreference Tools
 - Phrase Structure Parsers
 - Dependency Structure Parsers
+
+Things to look at
+
+- losing the context
+- losing the top-level metadata
+- losing layers
