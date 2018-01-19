@@ -275,7 +275,7 @@ Produces
 - http://vocab.lappsgrid.org/Sentence
 ```
 
-Let's make this more compact (the `b` or `v` in the service column in the table above indicates whether the service runs on the Brandeis or Vassar server):
+Let's make this more compact (the `b` or `v` in the service column in the table below indicates whether the service runs on the Brandeis or Vassar server):
 
 service                                 | requires                | produces
 --------                                |----------               |---------
@@ -302,7 +302,23 @@ First we feed it the [karen-flies.txt](karen-flies.txt) sample file, which has t
 }
 ```
 
+Uploading this file to the Galaxy server allows you to specify what kind of file this is or you can let Galaxy make a guess. For Galaxy a number of file types have been defined with mappings to extensions: Text (.txt), LifText (.liftxt), Gate (.gate), Lif (.lif), Lapps (.lapps) and LappsJson (.json). Note that these types are separate from the input type in the discriminator.
 
+When uploading the sample file Galaxy guesses LifText, which is unfortunate because with that guess most of the splitters above will not run. This is because of the Galaxy XML wrappers for the services. These list a number of parameters that specify the input type.
+
+service                                 | input specification in XML wrapper
+--------                                | ---
+v stanford.splitter_2.0.0               | format="lif" label="input" name="input" type="data"
+v stanford.splitter_2.1.0-SNAPSHOT      | format="lif" label="input" name="input" type="data"
+b stanfordnlp.splitter_2.0.4            | format="lif" label="input" name="input" type="data"
+v gate.splitter_2.2.0                   | format='gate' name='input' type='data'
+v gate.splitter_2.3.0                   | format='gate' name='input' type='data'
+b opennlp.splitter_2.0.3                | format="lif" label="input" name="input" type="data"
+v LingpipeSentenceSplitter              | format="lif" label="input" name="input" type="data"
+b uima.dkpro.stanfordnlp.splitter_0.0.1 | format="text" label="input" name="input" type="data"
+b uima.dkpro.opennlp.splitter_0.0.1     | format="text" label="input" name="input" type="data"
+
+Only the two DKPro splitters are willing to work with input of type LifText, the other all require Lif or Gate (although the Gate splitter will work with Lif because there is an automatic converter). If we want to do these tests in Galaxy then we need to upload the sample file as a Lif file.
 
 
 First tried these
