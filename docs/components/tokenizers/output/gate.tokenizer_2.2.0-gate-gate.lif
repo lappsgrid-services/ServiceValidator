@@ -1,0 +1,313 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld#lif",
+    "payload": {
+        "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
+        "metadata": {
+            
+        },
+        "text": {
+            "@value": "Karen flies to New York and she is happy about that.\n"
+        },
+        "views": [
+            {
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/Token": {
+                            "producer": "org.anc.lapps.gate.Tokenizer_2.2.0",
+                            "type": "gate"
+                        }
+                    }
+                },
+                "annotations": [
+                    {
+                        "id": "0",
+                        "start": 0,
+                        "end": 5,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "length": "5",
+                            "orth": "upperInitial",
+                            "word": "Karen",
+                            "tokenType": "word"
+                        }
+                    },
+                    {
+                        "id": "1",
+                        "start": 5,
+                        "end": 6,
+                        "@type": "SpaceToken",
+                        "label": "SpaceToken",
+                        "features": {
+                            "word": " ",
+                            "length": "1",
+                            "tokenType": "space"
+                        }
+                    },
+                    {
+                        "id": "2",
+                        "start": 6,
+                        "end": 11,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "length": "5",
+                            "orth": "lowercase",
+                            "word": "flies",
+                            "tokenType": "word"
+                        }
+                    },
+                    {
+                        "id": "3",
+                        "start": 11,
+                        "end": 12,
+                        "@type": "SpaceToken",
+                        "label": "SpaceToken",
+                        "features": {
+                            "word": " ",
+                            "length": "1",
+                            "tokenType": "space"
+                        }
+                    },
+                    {
+                        "id": "4",
+                        "start": 12,
+                        "end": 14,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "length": "2",
+                            "orth": "lowercase",
+                            "word": "to",
+                            "tokenType": "word"
+                        }
+                    },
+                    {
+                        "id": "5",
+                        "start": 14,
+                        "end": 15,
+                        "@type": "SpaceToken",
+                        "label": "SpaceToken",
+                        "features": {
+                            "word": " ",
+                            "length": "1",
+                            "tokenType": "space"
+                        }
+                    },
+                    {
+                        "id": "6",
+                        "start": 15,
+                        "end": 18,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "length": "3",
+                            "orth": "upperInitial",
+                            "word": "New",
+                            "tokenType": "word"
+                        }
+                    },
+                    {
+                        "id": "7",
+                        "start": 18,
+                        "end": 19,
+                        "@type": "SpaceToken",
+                        "label": "SpaceToken",
+                        "features": {
+                            "word": " ",
+                            "length": "1",
+                            "tokenType": "space"
+                        }
+                    },
+                    {
+                        "id": "8",
+                        "start": 19,
+                        "end": 23,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "length": "4",
+                            "orth": "upperInitial",
+                            "word": "York",
+                            "tokenType": "word"
+                        }
+                    },
+                    {
+                        "id": "9",
+                        "start": 23,
+                        "end": 24,
+                        "@type": "SpaceToken",
+                        "label": "SpaceToken",
+                        "features": {
+                            "word": " ",
+                            "length": "1",
+                            "tokenType": "space"
+                        }
+                    },
+                    {
+                        "id": "10",
+                        "start": 24,
+                        "end": 27,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "length": "3",
+                            "orth": "lowercase",
+                            "word": "and",
+                            "tokenType": "word"
+                        }
+                    },
+                    {
+                        "id": "11",
+                        "start": 27,
+                        "end": 28,
+                        "@type": "SpaceToken",
+                        "label": "SpaceToken",
+                        "features": {
+                            "word": " ",
+                            "length": "1",
+                            "tokenType": "space"
+                        }
+                    },
+                    {
+                        "id": "12",
+                        "start": 28,
+                        "end": 31,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "length": "3",
+                            "orth": "lowercase",
+                            "word": "she",
+                            "tokenType": "word"
+                        }
+                    },
+                    {
+                        "id": "13",
+                        "start": 31,
+                        "end": 32,
+                        "@type": "SpaceToken",
+                        "label": "SpaceToken",
+                        "features": {
+                            "word": " ",
+                            "length": "1",
+                            "tokenType": "space"
+                        }
+                    },
+                    {
+                        "id": "14",
+                        "start": 32,
+                        "end": 34,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "length": "2",
+                            "orth": "lowercase",
+                            "word": "is",
+                            "tokenType": "word"
+                        }
+                    },
+                    {
+                        "id": "15",
+                        "start": 34,
+                        "end": 35,
+                        "@type": "SpaceToken",
+                        "label": "SpaceToken",
+                        "features": {
+                            "word": " ",
+                            "length": "1",
+                            "tokenType": "space"
+                        }
+                    },
+                    {
+                        "id": "16",
+                        "start": 35,
+                        "end": 40,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "length": "5",
+                            "orth": "lowercase",
+                            "word": "happy",
+                            "tokenType": "word"
+                        }
+                    },
+                    {
+                        "id": "17",
+                        "start": 40,
+                        "end": 41,
+                        "@type": "SpaceToken",
+                        "label": "SpaceToken",
+                        "features": {
+                            "word": " ",
+                            "length": "1",
+                            "tokenType": "space"
+                        }
+                    },
+                    {
+                        "id": "18",
+                        "start": 41,
+                        "end": 46,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "length": "5",
+                            "orth": "lowercase",
+                            "word": "about",
+                            "tokenType": "word"
+                        }
+                    },
+                    {
+                        "id": "19",
+                        "start": 46,
+                        "end": 47,
+                        "@type": "SpaceToken",
+                        "label": "SpaceToken",
+                        "features": {
+                            "word": " ",
+                            "length": "1",
+                            "tokenType": "space"
+                        }
+                    },
+                    {
+                        "id": "20",
+                        "start": 47,
+                        "end": 51,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "length": "4",
+                            "orth": "lowercase",
+                            "word": "that",
+                            "tokenType": "word"
+                        }
+                    },
+                    {
+                        "id": "21",
+                        "start": 51,
+                        "end": 52,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "word": ".",
+                            "length": "1",
+                            "tokenType": "punctuation"
+                        }
+                    },
+                    {
+                        "id": "23",
+                        "start": 52,
+                        "end": 53,
+                        "@type": "SpaceToken",
+                        "label": "SpaceToken",
+                        "features": {
+                            "word": "\n",
+                            "length": "1",
+                            "tokenType": "control"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

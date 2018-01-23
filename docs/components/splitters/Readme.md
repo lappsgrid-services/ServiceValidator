@@ -364,7 +364,7 @@ In any case, it is better (and faster) to separate using Galaxy from testing the
 
 ### Running splitters using LSD
 
-We run the splitters exactly the same way as specified in the GalaxyMod XML wrappers. More specifically we have the following invocation (all the be run from the `tools` directory):
+We run the splitters exactly the same way as specified in the GalaxyMod XML wrappers. More specifically we have the following invocation (all to be run from the `tools` directory):
 
 ```
 lsd common/invoke_vassar.lsd stanford.splitter_2.0.0 INPUT OUTPUT

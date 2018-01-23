@@ -1,0 +1,149 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld#lif",
+    "payload": {
+        "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
+        "metadata": {
+            
+        },
+        "text": {
+            "@value": "Karen flies to New York and she is happy about that.\n"
+        },
+        "views": [
+            {
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/Token": {
+                            "producer": "edu.cmu.lti.oaqa.lapps.LingpipeTokenizer",
+                            "type": "tokenizer:lingpipe-indo-european-tokenizer"
+                        }
+                    }
+                },
+                "annotations": [
+                    {
+                        "id": "lingpipe-token-1",
+                        "start": 0,
+                        "end": 5,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "token",
+                        "features": {
+                            "word": "Karen"
+                        }
+                    },
+                    {
+                        "id": "lingpipe-token-1",
+                        "start": 6,
+                        "end": 11,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "token",
+                        "features": {
+                            "word": "flies"
+                        }
+                    },
+                    {
+                        "id": "lingpipe-token-1",
+                        "start": 12,
+                        "end": 14,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "token",
+                        "features": {
+                            "word": "to"
+                        }
+                    },
+                    {
+                        "id": "lingpipe-token-1",
+                        "start": 15,
+                        "end": 18,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "token",
+                        "features": {
+                            "word": "New"
+                        }
+                    },
+                    {
+                        "id": "lingpipe-token-1",
+                        "start": 19,
+                        "end": 23,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "token",
+                        "features": {
+                            "word": "York"
+                        }
+                    },
+                    {
+                        "id": "lingpipe-token-1",
+                        "start": 24,
+                        "end": 27,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "token",
+                        "features": {
+                            "word": "and"
+                        }
+                    },
+                    {
+                        "id": "lingpipe-token-1",
+                        "start": 28,
+                        "end": 31,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "token",
+                        "features": {
+                            "word": "she"
+                        }
+                    },
+                    {
+                        "id": "lingpipe-token-1",
+                        "start": 32,
+                        "end": 34,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "token",
+                        "features": {
+                            "word": "is"
+                        }
+                    },
+                    {
+                        "id": "lingpipe-token-1",
+                        "start": 35,
+                        "end": 40,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "token",
+                        "features": {
+                            "word": "happy"
+                        }
+                    },
+                    {
+                        "id": "lingpipe-token-1",
+                        "start": 41,
+                        "end": 46,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "token",
+                        "features": {
+                            "word": "about"
+                        }
+                    },
+                    {
+                        "id": "lingpipe-token-1",
+                        "start": 47,
+                        "end": 51,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "token",
+                        "features": {
+                            "word": "that"
+                        }
+                    },
+                    {
+                        "id": "lingpipe-token-1",
+                        "start": 51,
+                        "end": 52,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "token",
+                        "features": {
+                            "word": "."
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "parameters": {
+        
+    }
+}
