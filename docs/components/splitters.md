@@ -29,7 +29,7 @@ Check marks indicate all is well, if not look up the error code in the list belo
 
 Error codes:
 
-1. There was
+1. View created does not have an identifier
 
 2. Well, dummy, ...
 
@@ -136,7 +136,7 @@ DKPro Core Stanford Splitter v1.7.0          | brandeis | uima.dkpro.stanfordnlp
 DKPro Core OpenNLP Splitter v1.7.0           | brandeis | uima.dkpro.opennlp.splitter_0.0.1
 
 
-# Declared Metadata
+## Declared Metadata
 
 Using
 
@@ -291,7 +291,9 @@ b uima.dkpro.opennlp.splitter_0.0.1     | jsonld#lif, Sentence    | jsonld#lif, 
 
 
 
-# Running the Splitters
+## Running the Splitters
+
+### Running splitters using Galaxy
 
 First we feed it the [karen-flies.txt](karen-flies.txt) sample file, which has the following content:
 
@@ -320,6 +322,30 @@ b uima.dkpro.opennlp.splitter_0.0.1     | format="text" label="input" name="inpu
 
 Only the two DKPro splitters are willing to work with input of type LifText, the other all require Lif or Gate (although the Gate splitter will work with Lif because there is an automatic converter). If we want to do these tests in Galaxy then we need to upload the sample file as a Lif file.
 
+Note: the format listed appears to be either the extension or the type in lower case. If it is the extension then the format for the DKPro splitters may be wrong because there is no text extension.
+
+In any case, it is better (and faster) to separate using Galaxy from testing the behavior of services. Below we use command line invocation using LSD.
+
+
+### Running splitters using LSD
+
+We run the splitters exactly the same way as specified in the GalaxyMod XML wrappers. More specifically we have the following invocation (all the be run from the `tools` directory):
+
+```
+lsd common/invoke_vassar.lsd stanford.splitter_2.0.0 INPUT OUTPUT
+lsd common/invoke_vassar.lsd stanford.splitter_2.1.0-SNAPSHOT INPUT OUTPUT
+lsd common/invoke_brandeis.lsd stanfordnlp.splitter_2.0.4 INPUT OUTPUT
+lsd gate/invoke.lsd gate.splitter_2.2.0 INPUT OUTPUT
+lsd gate/invoke.lsd gate.splitter_2.3.0 INPUT OUTPUT
+lsd common/invoke_brandeis.lsd opennlp.splitter_2.0.3 INPUT OUTPUT
+lsd lingpipe/invoke.lsd LingpipeSentenceSplitter INPUT OUTPUT
+lsd common/invoke_brandeis.lsd uima.dkpro.stanfordnlp.splitter_0.0.1 INPUT OUTPUT
+lsd common/invoke_brandeis.lsd uima.dkpro.opennlp.splitter_0.0.1 INPUT OUTPUT
+```
+
+In addition, we may run the JSON pretty print from `/common/pretty_print.lsd`.
+
+---
 
 First tried these
 
