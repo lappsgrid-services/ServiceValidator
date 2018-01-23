@@ -4,10 +4,10 @@ This directory contains the result of various checks on a series of services. Mu
 
 The following services were tested or will be tested:
 
-- [Sentence Splitters](splitters.md)
-- [Tokenizers](tokenizers.md)
-- [POS Taggers](taggers.md)
-- [Chunkers](chunkers.md)
+- [Sentence Splitters](splitters/index.md)
+- [Tokenizers](tokenizers/index.md)
+- [POS Taggers](taggers/index.md)
+- [Chunkers](chunkers/index.md)
 - Named Entity Recognizers
 - Coreference Tools
 - Phrase Structure Parsers
