@@ -5,33 +5,68 @@ Consistency checking on all splitters used on http://galaxy.lappsgrid.org/ and h
 
 ## Summary of Observations
 
-There are nine unique sentence splitters on the Brandeis and Vassar nodes of the grid (limiting ourselves to those used at http://galaxy.lappsgrid.org/ and http://jetstream.lappsgrid.org/). Here is a table with observations on all of them. The b or v in the service column indicates whether the service runs on the Brandeis or Vassar server.
+The Galaxy servers listed above use nine unique sentence splitters on the Brandeis and Vassar nodes of the grid. We are looking at those services with the following requirements in mind:
+
+- If a service says it requires one of several formats (for example `lif` or `text`), then it should work with those formats and fail gracefully with an error message (something like "Unsupported input type: gate"). We are assuming that when the discriminator says the payload is LIF that the payload actually is LIF, that is, we assume well-formed input.
+
+- If a service says it requires a set of annotation types to be in the input (for example `Token` and `Sentence`), then all those types should be in the input, otherwise the service should fail gracefully with an error message. For now, we assuming that "available in the input" means that there is a view where the metadata says the view contains that annotation type. This may be extended to meaning that there actually are such annotations in the annotations list.
+
+- If a service says it produces output in a certain format than it should do so.
+
+- If a service says it produces certain kinds of annotations then it should do so.
+
+- A service should always create well-formed output. Here, we are mostly concerned about LIF output.
+
+- Services should not remove existing layers.
+
+Below is a table with observations on all nine splitter services. See the "Running splitters using LSD" for slightly more verbose observations.
 
 service                                         | requires    | produces  | other
 ---                                             | ---         | ---       | ---
-vassar stanford.splitter_2.0.0                  | &check;     | &check;   |
-vassar stanford.splitter_2.1.0-SNAPSHOT         |             |           |
-brandeis stanfordnlp.splitter_2.0.4             |             |           |
-vassar gate.splitter_2.2.0                      |             |           |
-vassar gate.splitter_2.3.0                      |             |           |
-brandeis opennlp.splitter_2.0.3                 |             |           |
-vassar LingpipeSentenceSplitter                 |             |           |
-brandeis uima.dkpro.stanfordnlp.splitter_0.0.1  |             |           |
-brandeis uima.dkpro.opennlp.splitter_0.0.1      |             |           |
+vassar stanford.splitter_2.0.0                  | 1           | 2         | 3, 4, 5
+vassar stanford.splitter_2.1.0-SNAPSHOT         | 6           | &check;   | 3, 5, 7
+brandeis stanfordnlp.splitter_2.0.4             | &check;     | &check;   | 3, 8
+vassar gate.splitter_2.2.0                      | 9, 10       | &check;   | 3, 11, 12
+vassar gate.splitter_2.3.0                      | 9, 10       | &check;   | 3, 11, 12
+brandeis opennlp.splitter_2.0.3                 | 13          | &check;   | 3, 8
+vassar LingpipeSentenceSplitter                 | &check;     | &check;   | 3, 4, 14
+brandeis uima.dkpro.stanfordnlp.splitter_0.0.1  | 15          | 16        | 3, 8, 11, 12
+brandeis uima.dkpro.opennlp.splitter_0.0.1      | 15          | 16        | 3, 8, 11, 12
 
 The columns are to be interpreted as follows:
 
-- requires: tool requirements from metadata match its behavior when given input
-- produces: what the tool produces matches what is specified in the metadata
-- other: any other observations
+The `requires` column indicates whether tool requirements from metadata match its behavior when given input whereas the `produces` column indicates whether what the tool produces matches what is specified in the metadata. Any other observations are in the `other` column. Check marks indicate all is well, the number refer to elements from the list below.
 
-Check marks indicate all is well, if not look up the error code in the list below.
+1. Format requirement has `json`, but not `json:lif`
+2. Service metadata says the output includes `Token` annotations, but it does not
+3. View created does not have an identifier
+4. On LIF input it fails to preserve the `@context` attribute (but it does add it for text input)
+5. With LIF input it will keep the `@language attribute`, but it won't add one on text input
+6. Service metadata format requirement has `json`
+7. It adds a `metadata` attribute to all annotations in the existing view
+8. There is no `label` attribute in the annotations
+9. Creates output for text and lif input even though metadata say that gate is required
+10. Metadata requires Token input but none is needed nor enforced
+11. There is no `@language` attribute
+12. Existing layer in input is lost
+13. Requirements say that text input should not be accepted, but it is
+14. View metadata has type `tokenizer:lingpipe-indo-european-tokenizer`, which is weird given this is a splitter
+15. Service metadata say input needs Sentence annotations
+16. View metadata says the view contains Token#pos
 
-Error codes:
+To finish this summary, here is a list of types used in the view metadata:
 
-1. View created does not have an identifier
+- sentence:stanford
+- splitter:stanford
+- gate
+- splitter:opennlp
+- splitter:dkpro_stanford
+- splitter:dkpro_opennlp
 
-2. Well, dummy, ...
+We need a bit more of a theory on how to use the type attribute. An initial proposal:
+
+- These types are all discriminators, possibly under `ns/tools` or `ns/components`.
+- The splitter page would have all kinds of tools that can be described on that page.
 
 
 
@@ -295,7 +330,7 @@ b uima.dkpro.opennlp.splitter_0.0.1     | jsonld#lif, Sentence    | jsonld#lif, 
 
 ### Running splitters using Galaxy
 
-First we feed it the [karen-flies.txt](karen-flies.txt) sample file, which has the following content:
+Say we run services from Galaxy and we first feed it the [karen-flies.txt](input/karen-flies.txt) sample file, which has the following content:
 
 ```
 {
@@ -306,7 +341,7 @@ First we feed it the [karen-flies.txt](karen-flies.txt) sample file, which has t
 
 Uploading this file to the Galaxy server allows you to specify what kind of file this is or you can let Galaxy make a guess. For Galaxy a number of file types have been defined with mappings to extensions: Text (.txt), LifText (.liftxt), Gate (.gate), Lif (.lif), Lapps (.lapps) and LappsJson (.json). Note that these types are separate from the input type in the discriminator.
 
-When uploading the sample file Galaxy guesses LifText, which is unfortunate because with that guess most of the splitters above will not run. This is because of the Galaxy XML wrappers for the services. These list a number of parameters that specify the input type.
+When uploading the sample file Galaxy guesses LifText, which is unfortunate because with that guess most of the splitters above will not run. This is because of the Galaxy XML wrappers for the services which list a number of parameters that specify the input type (note the 'v' and 'b' prefixes, referring to the Vassar and Brandeis servers respectively):
 
 service                                 | input specification in XML wrapper
 --------                                | ---
@@ -343,16 +378,18 @@ lsd common/invoke_brandeis.lsd uima.dkpro.stanfordnlp.splitter_0.0.1 INPUT OUTPU
 lsd common/invoke_brandeis.lsd uima.dkpro.opennlp.splitter_0.0.1 INPUT OUTPUT
 ```
 
-In addition, we may run the JSON pretty print from `/common/pretty_print.lsd`.
+In addition, we may run the JSON pretty print from `/common/pretty_print.lsd` and converters via `converters/invoke.lsd` as needed (for the GATE services in the case of sentence splitters). We run the services on four different versions of the input file:
 
----
+- [karen-flies.txt](input/karen-flies.txt)
+- [karen-flies.lif](input/karen-flies.lif)
+- [karen-flies.gate](input/karen-flies.gate)
+- [karen-flies.ner.lif](input/karen-flies.ner.lif)
 
-First tried these
+The idea of the first three is that the service should either accept the input or fail gracefully with an error message. For the fourth, we use an unrelated annotation and test whether the service keeps it.
 
-1. Stanford SentenceSplitter v2.0.0 - Stanford Sentence Splitter (Vassar)
-2. Stanford Splitter - Stanford Splitter (Brandeis)
+The invocation used are all gathered in a [bash script](splitters.sh).
 
-Output of the one at Brandeis:
+Here is the kind of LIF output we expect if a service got the right kind of input:
 
 ```
 {
@@ -366,44 +403,7 @@ Output of the one at Brandeis:
         },
         "views": [
             {
-                "metadata": {
-                    "contains": {
-                        "http://vocab.lappsgrid.org/Sentence": {
-                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.Splitter:2.0.4",
-                            "type": "splitter:stanford"
-                        }
-                    }
-                },
-                "annotations": [
-                    {
-                        "id": "s_0",
-                        "start": 0,
-                        "end": 52,
-                        "@type": "http://vocab.lappsgrid.org/Sentence",
-                        "features": {
-                            "sentence": "Karen flies to New York and she is happy about that."
-                        }
-                    }
-                ]
-            }
-        ]
-    }
-}
-```
-
-Output of the one at Vassar:
-
-```
-{
-    "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld#lif",
-    "payload": {
-        "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
-        "metadata": { },
-        "text": {
-            "@value": "Karen flies to New York and she is happy about that.\n"
-        },
-        "views": [
-            {
+                "id": "v1",
                 "metadata": {
                     "contains": {
                         "http://vocab.lappsgrid.org/Sentence": {
@@ -427,13 +427,91 @@ Output of the one at Vassar:
 }
 ```
 
-In both cases the splitter accepts text input in the payload and creates a LIF object in the output payload.
+And this is what we expect when the input is not as required:
 
-The view lacks an identifier in both cases.
+```
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/error",
+    "payload": "Unsupported input type: http://vocab.lappsgrid.org/ns/media/xml#gate"
+}
+```
 
-Differences:
 
-1. Brandeis version adds the `@language` property to the text.
-1. In the metadata the Brandeis version uses `splitter:stanford` for the type and the Vassar version uses `sentence:stanford`. This is part of a bigger issue with inconsistent use of the type property.
-1. The Vassar version adds a `label` property to the annotation. This use is correct according to the current schema at http://vocab.lappsgrid.org/schema/lif-schema.json, but the `label` property is not defined in the vocabulary and probably not useful here. Also, we have discussed removing `type` and `label` from the top level and adding them to the feature dictionary instead if needed.
-1. The Brandeis version adds a `sentence` feature to the feature dictionary of the annotation. Another optional feature that is not in the vocabulary.
+### Service behavior analysis
+
+Here are observations for all the splitters as of January 23rd 2018. All output is in [output](output).
+
+vassar stanford.splitter_2.0.0
+
+- New view has no identifier
+- Format requirement has `json`, but not `json:lif`
+- Service mmetadata says the output includes `Token` annotations, but it does not
+- View metadata has type `sentence:stanford`
+- Fails correctly on GATE input and accepts both text and LIF
+- Preserves the existing layer correctly
+- On LIF input it fails to preserve the `@context` attribute (but it does add it for text input)
+- With LIF input it will keep the `@language attribute`, but it won't add one on text input
+
+vassar stanford.splitter_2.1.0-SNAPSHOT
+
+- New view has no identifier
+- Service metadata format requirement has `json`
+- View metadata has type `sentence:stanford`
+- Fails correctly on GATE input and accepts both text and LIF
+- With LIF input it will keep the `@language` attribute, but it won't add one on text input
+- It adds a `metadata` attribute to all annotations in the existing view
+
+brandeis stanfordnlp.splitter_2.0.4
+
+- New view has no identifier
+- View metadata has type `splitter:stanford`
+- Fails correctly on GATE input and accepts both text and LIF
+- There is no `label` attribute in the annotations
+- Preserves the existing layer correctly
+
+vassar gate.splitter_2.2.0
+
+- New view has no identifier
+- View metadata has type `gate`
+- Creates output for all three input types even though metadata say that gate is required
+- Output is the same for all of them
+- Metadata requires Token input but none is needed nor enforced
+- There is no `@language` attribute
+- Existing layer in input is lost
+
+vassar gate.splitter_2.3.0
+
+- No differences observed compared to version 2.2.0
+
+brandeis opennlp.splitter_2.0.3
+
+- New view has no identifier
+- View metadata has type `splitter:opennlp`
+- Fails correctly on GATE input and accepts both text and LIF
+- Requirements say that text input should not be accepted
+- There is no `label` attribute in the annotations
+- Preserves the existing layer correctly
+
+vassar LingpipeSentenceSplitter
+
+- New view has no identifier
+- View metadata has type `tokenizer:lingpipe-indo-european-tokenizer`
+- View metadata type is weird given this is a splitter
+- Fails correctly on GATE input and accepts both text and LIF
+- On LIF input it fails to preserve the `@context` attribute (but it does add it for text input)
+- Preserves the existing layer correctly
+
+brandeis uima.dkpro.stanfordnlp.splitter_0.0.1
+
+- New view has no identifier
+- View metadata has type `splitter:dkpro_stanford`
+- There is no `@language` attribute
+- Existing layer is not preserved
+- There is no `label` attribute in the annotations
+- Service metadata say input needs Sentence annotations
+- View metadata says the view contains Token#pos
+
+brandeis uima.dkpro.opennlp.splitter_0.0.1
+
+- Same observations as for the above, except the following
+- View metadata has type `splitter:dkpro_opennlp`

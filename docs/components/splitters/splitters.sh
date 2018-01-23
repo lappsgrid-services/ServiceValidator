@@ -15,10 +15,12 @@ TOOLS=/Users/marc/Desktop/lapps/code/lappsgrid-incubator/GalaxyMods/tools
 # Location of the LSD script.
 LSD=/Users/marc/bin/lsd
 
-# Three kinds of input, reflecting the text, lif and gate discriminators.
+# Three kinds of input, reflecting the text, lif and gate discriminators, and
+# another for the lif discriminator but with an existing view in it.
 TEXT_INPUT=input/karen-flies.txt
-LIF_INPUT=input/karen-flies.lif
 GATE_INPUT=input/karen-flies.gate
+LIF_INPUT=input/karen-flies.lif
+NER_INPUT=input/karen-flies.ner.lif
 
 
 # Now run the services in groups. Groups are determined by what the invoker
@@ -42,6 +44,8 @@ then
 	echo "common/invoke_vassar.lsd $service"
 	$LSD $TOOLS/common/invoke_vassar.lsd $service $LIF_INPUT tmp
 	$LSD $TOOLS/common/pretty_print.lsd tmp output/$service-vassar-lif.lif
+	$LSD $TOOLS/common/invoke_vassar.lsd $service $NER_INPUT tmp
+	$LSD $TOOLS/common/pretty_print.lsd tmp output/$service-vassar-ner-lif.lif
 	$LSD $TOOLS/common/invoke_vassar.lsd $service $TEXT_INPUT tmp
 	$LSD $TOOLS/common/pretty_print.lsd tmp output/$service-vassar-txt.lif
 	$LSD $TOOLS/common/invoke_vassar.lsd $service $GATE_INPUT tmp
@@ -61,6 +65,8 @@ then
 	echo "common/invoke_brandeis.lsd $service"
 	$LSD $TOOLS/common/invoke_brandeis.lsd $service $LIF_INPUT tmp
 	$LSD $TOOLS/common/pretty_print.lsd tmp output/$service-brandeis-lif.lif
+	$LSD $TOOLS/common/invoke_brandeis.lsd $service $NER_INPUT tmp
+	$LSD $TOOLS/common/pretty_print.lsd tmp output/$service-brandeis-ner-lif.lif
 	$LSD $TOOLS/common/invoke_brandeis.lsd $service $TEXT_INPUT tmp
 	$LSD $TOOLS/common/pretty_print.lsd tmp output/$service-brandeis-txt.lif
 	$LSD $TOOLS/common/invoke_brandeis.lsd $service $GATE_INPUT tmp
@@ -84,6 +90,8 @@ then
 	$LSD $TOOLS/converters/invoke.lsd convert.gate2json_2.0.0 tmp true output/$service-gate-txt.lif
 	$LSD $TOOLS/gate/invoke.lsd $service $LIF_INPUT tmp
 	$LSD $TOOLS/converters/invoke.lsd convert.gate2json_2.0.0 tmp true output/$service-gate-lif.lif
+	$LSD $TOOLS/gate/invoke.lsd $service $NER_INPUT tmp
+	$LSD $TOOLS/converters/invoke.lsd convert.gate2json_2.0.0 tmp true output/$service-gate-ner-lif.lif
     done
 fi
 
@@ -97,6 +105,8 @@ then
 	echo "lingpipe/invoke.lsd $service"
 	$LSD $TOOLS/lingpipe/invoke.lsd $service $LIF_INPUT tmp
 	$LSD $TOOLS/common/pretty_print.lsd tmp output/$service-lingpipe-lif.lif
+	$LSD $TOOLS/lingpipe/invoke.lsd $service $NER_INPUT tmp
+	$LSD $TOOLS/common/pretty_print.lsd tmp output/$service-lingpipe-ner-lif.lif
 	$LSD $TOOLS/lingpipe/invoke.lsd $service $TEXT_INPUT tmp
 	$LSD $TOOLS/common/pretty_print.lsd tmp output/$service-lingpipe-txt.lif
 	$LSD $TOOLS/lingpipe/invoke.lsd $service $GATE_INPUT tmp
