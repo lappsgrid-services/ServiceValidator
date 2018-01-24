@@ -1,5 +1,24 @@
 # Taggers
 
+Consistency checking on all splitters used on http://galaxy.lappsgrid.org/ and http://jetstream.lappsgrid.org/. This was done in a way similar to the [splitters](../splitters) but reported on in a less verbose way.
+
+
+## Summary of Observations
+
+Below is a table with observations on nine tagger services. See further down for more verbose observations.
+
+service                             | requires    | produces  | other
+---                                 | ---         | ---       | ---
+stanford/vassar.tagger_2.0.0.xml    | | |
+stanford/vassar.tagger_2.1.0.xml    | | |
+stanford/brandeis.postagger.xml     | | |
+gate/gate.tagger_2.2.0.xml          | | |
+gate/gate.tagger_2.3.0.xml          | | |
+opennlp/opennlp.postagger.xml       | | |
+lingpipe/vassar.tagger_1.0.0.xml    | | |
+dkpro/dkpro.stanford.postagger.xml  | | |
+dkpro/dkpro.opennlp.postagger.xml   | | |
+
 
 ## Rounding up the Taggers
 
