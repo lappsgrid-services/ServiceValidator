@@ -1,0 +1,294 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld#lif",
+    "payload": {
+        "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
+        "metadata": {
+            
+        },
+        "text": {
+            "@value": "Karen flies to New York and she is happy about that.\n",
+            "@language": "en"
+        },
+        "views": [
+            {
+                "id": "v1",
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/Token": {
+                            "producer": "edu.brandeis.cs.lappsgrid.opennlp.Tokenizer:2.0.3",
+                            "type": "tokenizer:opennlp"
+                        }
+                    }
+                },
+                "annotations": [
+                    {
+                        "id": "tok_0",
+                        "start": 0,
+                        "end": 5,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "token",
+                        "features": {
+                            "word": "Karen"
+                        },
+                        "metadata": null
+                    },
+                    {
+                        "id": "tok_1",
+                        "start": 6,
+                        "end": 11,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "token",
+                        "features": {
+                            "word": "flies"
+                        },
+                        "metadata": null
+                    },
+                    {
+                        "id": "tok_2",
+                        "start": 12,
+                        "end": 14,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "to"
+                        },
+                        "metadata": null
+                    },
+                    {
+                        "id": "tok_3",
+                        "start": 15,
+                        "end": 18,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "New"
+                        },
+                        "metadata": null
+                    },
+                    {
+                        "id": "tok_4",
+                        "start": 19,
+                        "end": 23,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "York"
+                        },
+                        "metadata": null
+                    },
+                    {
+                        "id": "tok_5",
+                        "start": 24,
+                        "end": 27,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "and"
+                        },
+                        "metadata": null
+                    },
+                    {
+                        "id": "tok_6",
+                        "start": 28,
+                        "end": 31,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "she"
+                        },
+                        "metadata": null
+                    },
+                    {
+                        "id": "tok_7",
+                        "start": 32,
+                        "end": 34,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "is"
+                        },
+                        "metadata": null
+                    },
+                    {
+                        "id": "tok_8",
+                        "start": 35,
+                        "end": 40,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "happy"
+                        },
+                        "metadata": null
+                    },
+                    {
+                        "id": "tok_9",
+                        "start": 41,
+                        "end": 46,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "about"
+                        },
+                        "metadata": null
+                    },
+                    {
+                        "id": "tok_10",
+                        "start": 47,
+                        "end": 51,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "that"
+                        },
+                        "metadata": null
+                    },
+                    {
+                        "id": "tok_11",
+                        "start": 51,
+                        "end": 52,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "."
+                        },
+                        "metadata": null
+                    }
+                ]
+            },
+            {
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/Token#pos": {
+                            "producer": "org.anc.lapps.stanford.Tagger:2.1.0-SNAPSHOT",
+                            "type": "tagset:penn"
+                        }
+                    }
+                },
+                "annotations": [
+                    {
+                        "id": "tok0",
+                        "start": 0,
+                        "end": 5,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "pos": "NNP",
+                            "word": "Karen"
+                        }
+                    },
+                    {
+                        "id": "tok1",
+                        "start": 6,
+                        "end": 11,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "pos": "VBZ",
+                            "word": "flies"
+                        }
+                    },
+                    {
+                        "id": "tok2",
+                        "start": 12,
+                        "end": 14,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "pos": "TO",
+                            "word": "to"
+                        }
+                    },
+                    {
+                        "id": "tok3",
+                        "start": 15,
+                        "end": 18,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "pos": "NNP",
+                            "word": "New"
+                        }
+                    },
+                    {
+                        "id": "tok4",
+                        "start": 19,
+                        "end": 23,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "pos": "NNP",
+                            "word": "York"
+                        }
+                    },
+                    {
+                        "id": "tok5",
+                        "start": 24,
+                        "end": 27,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "pos": "CC",
+                            "word": "and"
+                        }
+                    },
+                    {
+                        "id": "tok6",
+                        "start": 28,
+                        "end": 31,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "pos": "PRP",
+                            "word": "she"
+                        }
+                    },
+                    {
+                        "id": "tok7",
+                        "start": 32,
+                        "end": 34,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "pos": "VBZ",
+                            "word": "is"
+                        }
+                    },
+                    {
+                        "id": "tok8",
+                        "start": 35,
+                        "end": 40,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "pos": "JJ",
+                            "word": "happy"
+                        }
+                    },
+                    {
+                        "id": "tok9",
+                        "start": 41,
+                        "end": 46,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "pos": "IN",
+                            "word": "about"
+                        }
+                    },
+                    {
+                        "id": "tok10",
+                        "start": 47,
+                        "end": 51,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "pos": "DT",
+                            "word": "that"
+                        }
+                    },
+                    {
+                        "id": "tok11",
+                        "start": 51,
+                        "end": 52,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "label": "Token",
+                        "features": {
+                            "pos": ".",
+                            "word": "."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

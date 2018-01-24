@@ -1,0 +1,4 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/error",
+    "payload": "Error processing input: edu.brandeis.cs.lappsgrid.opennlp.OpenNLPWebServiceException: OpenNLP-Web-Service-Exception:Wrong Input: CANNOT find http://vocab.lappsgrid.org/Token within previous annotations"
+}
