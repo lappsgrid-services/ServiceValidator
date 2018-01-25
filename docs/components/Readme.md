@@ -8,13 +8,12 @@ The following services were tested or will be tested:
 - [Tokenizers](tokenizers)
 - [POS Taggers](taggers)
 - [Chunkers](chunkers)
-- Named Entity Recognizers
+- [Named Entity Recognizers](entities)
 - Coreference Tools
-- Phrase Structure Parsers
-- Dependency Structure Parsers
+- Parsers
 
 Things to look at
 
 - losing the context
 - losing the top-level metadata
-- losing layers
+- losing views

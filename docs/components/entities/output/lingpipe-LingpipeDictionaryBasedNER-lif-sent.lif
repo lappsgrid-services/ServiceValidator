@@ -1,0 +1,77 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld#lif",
+    "payload": {
+        "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
+        "metadata": {
+            
+        },
+        "text": {
+            "@value": "Karen flies to New York and she is happy about that.\n",
+            "@language": "en"
+        },
+        "views": [
+            {
+                "id": "v1",
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/Sentence": {
+                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.Splitter:2.0.4",
+                            "type": "splitter:stanford"
+                        }
+                    }
+                },
+                "annotations": [
+                    {
+                        "id": "s_0",
+                        "start": 0,
+                        "end": 52,
+                        "@type": "http://vocab.lappsgrid.org/Sentence",
+                        "label": "sentence",
+                        "features": {
+                            "sentence": "Karen flies to New York and she is happy about that."
+                        }
+                    }
+                ]
+            },
+            {
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/NamedEntity": {
+                            "producer": "edu.cmu.lti.oaqa.lapps.LingpipeDictionaryBasedNER",
+                            "type": ""
+                        }
+                    }
+                },
+                "annotations": [
+                    {
+                        "id": "lingpipe-chunk-1",
+                        "start": 0,
+                        "end": 5,
+                        "@type": "Person",
+                        "label": "ne",
+                        "features": {
+                            "word": "Karen",
+                            "category": "Person",
+                            "score": "1.0"
+                        }
+                    },
+                    {
+                        "id": "lingpipe-chunk-2",
+                        "start": 15,
+                        "end": 23,
+                        "@type": "Location",
+                        "label": "ne",
+                        "features": {
+                            "word": "New York",
+                            "category": "Location",
+                            "score": "1.0"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "parameters": {
+        
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld#lif",
+    "payload": {
+        "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
+        "metadata": {
+            
+        },
+        "text": {
+            "@value": "Karen flies to New York and she is happy about that.\n",
+            "@language": "en"
+        },
+        "views": [
+            {
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/NamedEntity": {
+                            "producer": "edu.cmu.lti.oaqa.lapps.LingpipeDictionaryBasedNER",
+                            "type": ""
+                        }
+                    }
+                },
+                "annotations": [
+                    {
+                        "id": "lingpipe-chunk-1",
+                        "start": 0,
+                        "end": 5,
+                        "@type": "Person",
+                        "label": "ne",
+                        "features": {
+                            "word": "Karen",
+                            "category": "Person",
+                            "score": "1.0"
+                        }
+                    },
+                    {
+                        "id": "lingpipe-chunk-2",
+                        "start": 15,
+                        "end": 23,
+                        "@type": "Location",
+                        "label": "ne",
+                        "features": {
+                            "word": "New York",
+                            "category": "Location",
+                            "score": "1.0"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "parameters": {
+        
+    }
+}

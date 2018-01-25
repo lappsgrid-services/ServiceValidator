@@ -1,0 +1,2 @@
+Karen | Person
+New York | Location

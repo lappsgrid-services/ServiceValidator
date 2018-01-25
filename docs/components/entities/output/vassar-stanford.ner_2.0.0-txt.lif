@@ -1,0 +1,4 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/error",
+    "payload": "Unsupported input type: http://vocab.lappsgrid.org/ns/media/text"
+}

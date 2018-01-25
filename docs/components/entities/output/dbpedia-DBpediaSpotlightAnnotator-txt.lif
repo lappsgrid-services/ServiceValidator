@@ -1,0 +1,4 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/error",
+    "payload": "Received invalid response from DBpedia Spotlight API."
+}

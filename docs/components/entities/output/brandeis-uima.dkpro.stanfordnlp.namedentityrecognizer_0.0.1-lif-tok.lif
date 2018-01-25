@@ -1,0 +1,44 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld",
+    "payload": {
+        "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
+        "metadata": {
+            
+        },
+        "text": {
+            "@value": "Karen flies to New York and she is happy about that.\n"
+        },
+        "views": [
+            {
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/Token#pos": {
+                            "producer": "edu.brandeis.cs.uima.dkpro.StanfordNlpNamedEntityRecognizer:0.0.1-SNAPSHOT",
+                            "type": "ner:dkpro_stanford"
+                        }
+                    }
+                },
+                "annotations": [
+                    {
+                        "id": "859",
+                        "start": 0,
+                        "end": 5,
+                        "@type": "http://vocab.lappsgrid.org/Person",
+                        "features": {
+                            "word": "Karen"
+                        }
+                    },
+                    {
+                        "id": "864",
+                        "start": 15,
+                        "end": 23,
+                        "@type": "http://vocab.lappsgrid.org/Location",
+                        "features": {
+                            "word": "New York"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

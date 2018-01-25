@@ -1,0 +1,22 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld#lif",
+    "payload": {
+        "metadata": {
+            
+        },
+        "text": {
+            "@value": "Karen flies to New York and she is happy about that.\n",
+            "@language": "en"
+        },
+        "views": [
+            {
+                "metadata": {
+                    
+                },
+                "annotations": [
+                    
+                ]
+            }
+        ]
+    }
+}

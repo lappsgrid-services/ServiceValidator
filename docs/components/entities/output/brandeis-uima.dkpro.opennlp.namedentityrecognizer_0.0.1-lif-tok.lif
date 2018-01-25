@@ -1,0 +1,27 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld",
+    "payload": {
+        "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
+        "metadata": {
+            
+        },
+        "text": {
+            "@value": "Karen flies to New York and she is happy about that.\n"
+        },
+        "views": [
+            {
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/NamedEntity": {
+                            "producer": "edu.brandeis.cs.uima.dkpro.OpenNlpNamedEntityRecognizer:0.0.1-SNAPSHOT",
+                            "type": "ner:dkpro_opennlp"
+                        }
+                    }
+                },
+                "annotations": [
+                    
+                ]
+            }
+        ]
+    }
+}

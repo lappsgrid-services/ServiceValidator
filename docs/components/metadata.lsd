@@ -6,10 +6,23 @@ server = [ url: 'http://vassar.lappsgrid.org/invoker',
 
 String service = args[0];
 
-String url = "${server.url}/anc:${service}";
+String url;
+ServiceClient client;
 
-ServiceClient client = new ServiceClient(url, server.username, server.password);
+if (service == 'SelectableNamedEntityRecognizer') {
+    url = "http://grid.anc.org:9080/StanfordServices/2.1.0-SNAPSHOT/services/" + service;
+    client = new ServiceClient(url, null, null);
+} else if (service == 'DBpediaSpotlightAnnotator') {
+    url = "http://grid.anc.org:9080/DBpediaSpotlightServices/1.0.0/services/DBpediaSpotlightAnnotator";
+    client = new ServiceClient(url, null, null);
+} else if (service == 'LingpipeDictionaryBasedNER') {
+    url = "http://grid.anc.org:9080/LingpipeServices/1.1.0/services/LingpipeDictionaryBasedNER"
+    client = new ServiceClient(url, null, null);
+} else {
+    url = "${server.url}/anc:${service}";
+    client = new ServiceClient(url, server.username, server.password);
+}
 
-String metadata = client.getMetadata();
-
-System.out.println(metadata);
+String meta = client.getMetadata();
+//System.out.println('\n' + url + '\n');
+System.out.println(meta);
