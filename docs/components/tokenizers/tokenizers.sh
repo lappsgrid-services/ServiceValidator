@@ -18,10 +18,10 @@ LSD=/Users/marc/bin/lsd
 # Three kinds of input, reflecting the text, lif and gate discriminators, and
 # another for the lif discriminator but with an existing view in it. Borrowed
 # from the splitters.
-TEXT_INPUT=../splitters/input/karen-flies.txt
-GATE_INPUT=../splitters/input/karen-flies.gate
-LIF_INPUT=../splitters/input/karen-flies.lif
-NER_INPUT=../splitters/input/karen-flies.ner.lif
+TEXT_INPUT=../input/karen-flies.txt
+GATE_INPUT=../input/karen-flies.gate
+LIF_INPUT=../input/karen-flies.lif
+NER_INPUT=../input/karen-flies.ner.lif
 
 
 # Now run the services in groups. Groups are determined by what the invoker

@@ -1,0 +1,4 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/error",
+    "payload": "Invalid discriminator type: http://vocab.lappsgrid.org/ns/error"
+}

@@ -1,0 +1,15 @@
+#!/usr/bin/env lsd
+
+server = [ url: 'http://vassar.lappsgrid.org/invoker',
+           username: 'tester',
+           password: 'tester' ];
+
+String service = args[0];
+
+String url = "${server.url}/anc:${service}";
+
+ServiceClient client = new ServiceClient(url, server.username, server.password);
+
+String metadata = client.getMetadata();
+
+System.out.println(metadata);
