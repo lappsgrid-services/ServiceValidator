@@ -4,7 +4,7 @@
 #
 # Usage
 #
-#  $ ./entities.sh lingpipe
+#  $ ./entities.sh all|lingpipe|gate|dbpedia|brandeis|vassar|stanford
 
 
 # This is where all the invocation scripts live that are used by the Galaxy

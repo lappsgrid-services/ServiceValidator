@@ -4,7 +4,7 @@ Consistency checking on all named entity recognizers used on http://galaxy.lapps
 
 ## Summary of Observations
 
-Below is a table with observations on four chunker services. See further down for more verbose observations.
+Below is a table with observations on twelve named entity services. See further down for more verbose observations.
 
 service                                         | requires   | produces  | other
 ---                                             | ---        | ---       | ---
