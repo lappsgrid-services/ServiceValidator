@@ -1,0 +1,339 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld#lif",
+    "payload": {
+        "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
+        "metadata": {
+            
+        },
+        "text": {
+            "@value": "Karen flies to New York and she is happy about that.\n",
+            "@language": "en"
+        },
+        "views": [
+            {
+                "id": "v1",
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/Sentence": {
+                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.Splitter:2.0.4",
+                            "type": "splitter:stanford"
+                        }
+                    }
+                },
+                "annotations": [
+                    {
+                        "id": "s_0",
+                        "start": 0,
+                        "end": 52,
+                        "@type": "http://vocab.lappsgrid.org/Sentence",
+                        "label": "sentence",
+                        "features": {
+                            "sentence": "Karen flies to New York and she is happy about that."
+                        }
+                    }
+                ]
+            },
+            {
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/PhraseStructure": {
+                            "producer": "edu.brandeis.cs.lappsgrid.opennlp.Parser:2.0.3",
+                            "type": "parser:opennlp"
+                        },
+                        "http://vocab.lappsgrid.org/Constituent": {
+                            "producer": "edu.brandeis.cs.lappsgrid.opennlp.Parser:2.0.3",
+                            "type": "parser:opennlp"
+                        }
+                    }
+                },
+                "annotations": [
+                    {
+                        "id": "ps_0",
+                        "start": 0,
+                        "end": 52,
+                        "@type": "http://vocab.lappsgrid.org/PhraseStructure",
+                        "features": {
+                            "sentence": "Karen flies to New York and she is happy about that.",
+                            "penntree": "(TOP (S (S (NP (NNP Karen)) (VP (VBZ flies) (PP (TO to) (NP (NP (NNP New) (NNP York)) (CC and) (NP (PRP she)))))) (VP (VBZ is) (ADJP (JJ happy)) (ADVP (RB about))) (. that.)))\n",
+                            "constituents": [
+                                "cs_0_0",
+                                "cs_0_1",
+                                "cs_0_2",
+                                "cs_0_3",
+                                "cs_0_4",
+                                "cs_0_5",
+                                "cs_0_6",
+                                "cs_0_7",
+                                "cs_0_8",
+                                "cs_0_9",
+                                "cs_0_10",
+                                "cs_0_11",
+                                "cs_0_12",
+                                "cs_0_13",
+                                "cs_0_14",
+                                "cs_0_15",
+                                "cs_0_16",
+                                "cs_0_17",
+                                "cs_0_18",
+                                "cs_0_19",
+                                "cs_0_20",
+                                "cs_0_21",
+                                "cs_0_22",
+                                "cs_0_23",
+                                "cs_0_24",
+                                "cs_0_25",
+                                "cs_0_26",
+                                "cs_0_27",
+                                "cs_0_28",
+                                "cs_0_29",
+                                "cs_0_30",
+                                "cs_0_31",
+                                "cs_0_32",
+                                "cs_0_33"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "cs_0_0",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "TOP",
+                        "features": {
+                            "children": "[cs_0_1]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_1",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "S",
+                        "features": {
+                            "children": "[cs_0_2, cs_0_23, cs_0_32]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_2",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "S",
+                        "features": {
+                            "children": "[cs_0_3, cs_0_6]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_3",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "NP",
+                        "features": {
+                            "children": "[cs_0_4]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_4",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "NNP",
+                        "features": {
+                            "children": "[cs_0_5]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_5",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "Karen"
+                    },
+                    {
+                        "id": "cs_0_6",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "VP",
+                        "features": {
+                            "children": "[cs_0_7, cs_0_9]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_7",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "VBZ",
+                        "features": {
+                            "children": "[cs_0_8]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_8",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "flies"
+                    },
+                    {
+                        "id": "cs_0_9",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "PP",
+                        "features": {
+                            "children": "[cs_0_10, cs_0_12]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_10",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "TO",
+                        "features": {
+                            "children": "[cs_0_11]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_11",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "to"
+                    },
+                    {
+                        "id": "cs_0_12",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "NP",
+                        "features": {
+                            "children": "[cs_0_13, cs_0_18, cs_0_20]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_13",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "NP",
+                        "features": {
+                            "children": "[cs_0_14, cs_0_16]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_14",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "NNP",
+                        "features": {
+                            "children": "[cs_0_15]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_15",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "New"
+                    },
+                    {
+                        "id": "cs_0_16",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "NNP",
+                        "features": {
+                            "children": "[cs_0_17]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_17",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "York"
+                    },
+                    {
+                        "id": "cs_0_18",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "CC",
+                        "features": {
+                            "children": "[cs_0_19]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_19",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "and"
+                    },
+                    {
+                        "id": "cs_0_20",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "NP",
+                        "features": {
+                            "children": "[cs_0_21]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_21",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "PRP",
+                        "features": {
+                            "children": "[cs_0_22]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_22",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "she"
+                    },
+                    {
+                        "id": "cs_0_23",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "VP",
+                        "features": {
+                            "children": "[cs_0_24, cs_0_26, cs_0_29]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_24",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "VBZ",
+                        "features": {
+                            "children": "[cs_0_25]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_25",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "is"
+                    },
+                    {
+                        "id": "cs_0_26",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "ADJP",
+                        "features": {
+                            "children": "[cs_0_27]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_27",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "JJ",
+                        "features": {
+                            "children": "[cs_0_28]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_28",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "happy"
+                    },
+                    {
+                        "id": "cs_0_29",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "ADVP",
+                        "features": {
+                            "children": "[cs_0_30]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_30",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "RB",
+                        "features": {
+                            "children": "[cs_0_31]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_31",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "about"
+                    },
+                    {
+                        "id": "cs_0_32",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": ".",
+                        "features": {
+                            "children": "[cs_0_33]"
+                        }
+                    },
+                    {
+                        "id": "cs_0_33",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "that."
+                    }
+                ]
+            }
+        ]
+    }
+}

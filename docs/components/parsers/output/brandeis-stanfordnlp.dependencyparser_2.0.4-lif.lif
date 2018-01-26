@@ -1,0 +1,297 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld#lif",
+    "payload": {
+        "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
+        "metadata": {
+            
+        },
+        "text": {
+            "@value": "Karen flies to New York and she is happy about that.\n",
+            "@language": "en"
+        },
+        "views": [
+            {
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/DependencyStructure": {
+                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.DependencyParser:2.0.4",
+                            "type": "dependency-parser:stanford"
+                        },
+                        "http://vocab.lappsgrid.org/Dependency": {
+                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.DependencyParser:2.0.4",
+                            "type": "dependency-parser:stanford"
+                        },
+                        "http://vocab.lappsgrid.org/Token": {
+                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.DependencyParser:2.0.4",
+                            "type": "tokenizer:stanford"
+                        }
+                    }
+                },
+                "annotations": [
+                    {
+                        "id": "ds_0",
+                        "start": 0,
+                        "end": 52,
+                        "@type": "http://vocab.lappsgrid.org/DependencyStructure",
+                        "features": {
+                            "sentence": "Karen flies to New York and she is happy about that.",
+                            "dependencies": [
+                                "dep_0_0",
+                                "dep_0_1",
+                                "dep_0_2",
+                                "dep_0_3",
+                                "dep_0_4",
+                                "dep_0_5",
+                                "dep_0_6",
+                                "dep_0_7",
+                                "dep_0_8",
+                                "dep_0_9",
+                                "dep_0_10"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "dep_0_0",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "ROOT",
+                        "features": {
+                            "governor": "null",
+                            "dependent": "tk_0_1",
+                            "dependent_word": "flies"
+                        }
+                    },
+                    {
+                        "id": "dep_0_1",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "nn",
+                        "features": {
+                            "governor": "tk_0_4",
+                            "governor_word": "York",
+                            "dependent": "tk_0_3",
+                            "dependent_word": "New"
+                        }
+                    },
+                    {
+                        "id": "dep_0_2",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "conj",
+                        "features": {
+                            "governor": "tk_0_1",
+                            "governor_word": "flies",
+                            "dependent": "tk_0_8",
+                            "dependent_word": "happy"
+                        }
+                    },
+                    {
+                        "id": "dep_0_3",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "pobj",
+                        "features": {
+                            "governor": "tk_0_2",
+                            "governor_word": "to",
+                            "dependent": "tk_0_4",
+                            "dependent_word": "York"
+                        }
+                    },
+                    {
+                        "id": "dep_0_4",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "cop",
+                        "features": {
+                            "governor": "tk_0_8",
+                            "governor_word": "happy",
+                            "dependent": "tk_0_7",
+                            "dependent_word": "is"
+                        }
+                    },
+                    {
+                        "id": "dep_0_5",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "pobj",
+                        "features": {
+                            "governor": "tk_0_9",
+                            "governor_word": "about",
+                            "dependent": "tk_0_10",
+                            "dependent_word": "that"
+                        }
+                    },
+                    {
+                        "id": "dep_0_6",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "nsubj",
+                        "features": {
+                            "governor": "tk_0_1",
+                            "governor_word": "flies",
+                            "dependent": "tk_0_0",
+                            "dependent_word": "Karen"
+                        }
+                    },
+                    {
+                        "id": "dep_0_7",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "nsubj",
+                        "features": {
+                            "governor": "tk_0_8",
+                            "governor_word": "happy",
+                            "dependent": "tk_0_6",
+                            "dependent_word": "she"
+                        }
+                    },
+                    {
+                        "id": "dep_0_8",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "prep",
+                        "features": {
+                            "governor": "tk_0_8",
+                            "governor_word": "happy",
+                            "dependent": "tk_0_9",
+                            "dependent_word": "about"
+                        }
+                    },
+                    {
+                        "id": "dep_0_9",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "cc",
+                        "features": {
+                            "governor": "tk_0_1",
+                            "governor_word": "flies",
+                            "dependent": "tk_0_5",
+                            "dependent_word": "and"
+                        }
+                    },
+                    {
+                        "id": "dep_0_10",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "prep",
+                        "features": {
+                            "governor": "tk_0_1",
+                            "governor_word": "flies",
+                            "dependent": "tk_0_2",
+                            "dependent_word": "to"
+                        }
+                    },
+                    {
+                        "id": "tk_0_0",
+                        "start": 0,
+                        "end": 5,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "pos": "NNP",
+                            "word": "Karen"
+                        }
+                    },
+                    {
+                        "id": "tk_0_1",
+                        "start": 6,
+                        "end": 11,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "pos": "VBZ",
+                            "word": "flies"
+                        }
+                    },
+                    {
+                        "id": "tk_0_2",
+                        "start": 12,
+                        "end": 14,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "pos": "TO",
+                            "word": "to"
+                        }
+                    },
+                    {
+                        "id": "tk_0_3",
+                        "start": 15,
+                        "end": 18,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "pos": "NNP",
+                            "word": "New"
+                        }
+                    },
+                    {
+                        "id": "tk_0_4",
+                        "start": 19,
+                        "end": 23,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "pos": "NNP",
+                            "word": "York"
+                        }
+                    },
+                    {
+                        "id": "tk_0_5",
+                        "start": 24,
+                        "end": 27,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "pos": "CC",
+                            "word": "and"
+                        }
+                    },
+                    {
+                        "id": "tk_0_6",
+                        "start": 28,
+                        "end": 31,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "pos": "PRP",
+                            "word": "she"
+                        }
+                    },
+                    {
+                        "id": "tk_0_7",
+                        "start": 32,
+                        "end": 34,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "pos": "VBZ",
+                            "word": "is"
+                        }
+                    },
+                    {
+                        "id": "tk_0_8",
+                        "start": 35,
+                        "end": 40,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "pos": "JJ",
+                            "word": "happy"
+                        }
+                    },
+                    {
+                        "id": "tk_0_9",
+                        "start": 41,
+                        "end": 46,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "pos": "IN",
+                            "word": "about"
+                        }
+                    },
+                    {
+                        "id": "tk_0_10",
+                        "start": 47,
+                        "end": 51,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "pos": "DT",
+                            "word": "that"
+                        }
+                    },
+                    {
+                        "id": "tk_0_11",
+                        "start": 51,
+                        "end": 52,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "pos": ".",
+                            "word": "."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

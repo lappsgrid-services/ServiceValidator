@@ -1,0 +1,347 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld",
+    "payload": {
+        "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
+        "metadata": {
+            
+        },
+        "text": {
+            "@value": "Karen flies to New York and she is happy about that.\n"
+        },
+        "views": [
+            {
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/Token#pos": {
+                            "producer": "edu.brandeis.cs.uima.dkpro.StanfordNlpParser:0.0.1-SNAPSHOT",
+                            "type": "parser:dkpro_stanford"
+                        }
+                    }
+                },
+                "annotations": [
+                    {
+                        "id": "121",
+                        "start": 0,
+                        "end": 52,
+                        "@type": "http://vocab.lappsgrid.org/Sentence",
+                        "features": {
+                            "sentence": "Karen flies to New York and she is happy about that."
+                        }
+                    },
+                    {
+                        "id": "13",
+                        "start": 0,
+                        "end": 5,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "Karen",
+                            "pos": "NNP"
+                        }
+                    },
+                    {
+                        "id": "22",
+                        "start": 6,
+                        "end": 11,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "flies",
+                            "pos": "VBZ"
+                        }
+                    },
+                    {
+                        "id": "31",
+                        "start": 12,
+                        "end": 14,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "to",
+                            "pos": "TO"
+                        }
+                    },
+                    {
+                        "id": "40",
+                        "start": 15,
+                        "end": 18,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "New",
+                            "pos": "NNP"
+                        }
+                    },
+                    {
+                        "id": "49",
+                        "start": 19,
+                        "end": 23,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "York",
+                            "pos": "NNP"
+                        }
+                    },
+                    {
+                        "id": "58",
+                        "start": 24,
+                        "end": 27,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "and",
+                            "pos": "CC"
+                        }
+                    },
+                    {
+                        "id": "67",
+                        "start": 28,
+                        "end": 31,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "she",
+                            "pos": "PRP"
+                        }
+                    },
+                    {
+                        "id": "76",
+                        "start": 32,
+                        "end": 34,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "is",
+                            "pos": "VBZ"
+                        }
+                    },
+                    {
+                        "id": "85",
+                        "start": 35,
+                        "end": 40,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "happy",
+                            "pos": "JJ"
+                        }
+                    },
+                    {
+                        "id": "94",
+                        "start": 41,
+                        "end": 46,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "about",
+                            "pos": "IN"
+                        }
+                    },
+                    {
+                        "id": "103",
+                        "start": 47,
+                        "end": 51,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "that",
+                            "pos": "DT"
+                        }
+                    },
+                    {
+                        "id": "112",
+                        "start": 51,
+                        "end": 52,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": ".",
+                            "pos": "."
+                        }
+                    },
+                    {
+                        "id": "648",
+                        "start": 0,
+                        "end": 52,
+                        "@type": "http://vocab.lappsgrid.org/PhraseStructure",
+                        "features": {
+                            "sentence": "Karen flies to New York and she is happy about that.",
+                            "penntree": "(ROOT\r\n   (S\r\n   (S\r\n   (NP\r\n   (NNP Karen) \r\n ) \r\n(VP\r\n   (VBZ flies) \r\n(PP\r\n   (TO to) \r\n(NP\r\n   (NNP New) \r\n(NNP York) \r\n ) \r\n ) \r\n ) \r\n ) \r\n(CC and) \r\n(S\r\n   (NP\r\n   (PRP she) \r\n ) \r\n(VP\r\n   (VBZ is) \r\n(ADJP\r\n   (JJ happy) \r\n(PP\r\n   (IN about) \r\n(NP\r\n   (DT that) \r\n ) \r\n ) \r\n ) \r\n ) \r\n ) \r\n(. .) \r\n ) \r\n )",
+                            "constituents": [
+                                "672",
+                                "714",
+                                "761",
+                                "816",
+                                "701",
+                                "803",
+                                "688",
+                                "777",
+                                "656",
+                                "664",
+                                "753",
+                                "790",
+                                "648"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "672",
+                        "start": 0,
+                        "end": 5,
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "NP",
+                        "features": {
+                            "children": [
+                                "13"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "714",
+                        "start": 15,
+                        "end": 23,
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "NP",
+                        "features": {
+                            "children": [
+                                "40",
+                                "49"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "761",
+                        "start": 28,
+                        "end": 31,
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "NP",
+                        "features": {
+                            "children": [
+                                "67"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "816",
+                        "start": 47,
+                        "end": 51,
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "NP",
+                        "features": {
+                            "children": [
+                                "103"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "701",
+                        "start": 12,
+                        "end": 23,
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "PP",
+                        "features": {
+                            "children": [
+                                "31",
+                                "714"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "803",
+                        "start": 41,
+                        "end": 51,
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "PP",
+                        "features": {
+                            "children": [
+                                "94",
+                                "816"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "688",
+                        "start": 6,
+                        "end": 23,
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "VP",
+                        "features": {
+                            "children": [
+                                "22",
+                                "701"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "777",
+                        "start": 32,
+                        "end": 51,
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "VP",
+                        "features": {
+                            "children": [
+                                "76",
+                                "790"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "656",
+                        "start": 0,
+                        "end": 52,
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "S",
+                        "features": {
+                            "children": [
+                                "664",
+                                "58",
+                                "753",
+                                "112"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "664",
+                        "start": 0,
+                        "end": 23,
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "S",
+                        "features": {
+                            "children": [
+                                "672",
+                                "688"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "753",
+                        "start": 28,
+                        "end": 51,
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "S",
+                        "features": {
+                            "children": [
+                                "761",
+                                "777"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "790",
+                        "start": 35,
+                        "end": 51,
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "ADJP",
+                        "features": {
+                            "children": [
+                                "85",
+                                "803"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "648",
+                        "start": 0,
+                        "end": 52,
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "ROOT",
+                        "features": {
+                            "children": [
+                                "656"
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
