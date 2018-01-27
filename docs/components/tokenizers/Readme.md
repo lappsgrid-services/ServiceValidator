@@ -5,19 +5,22 @@ Consistency checking on all splitters used on http://galaxy.lappsgrid.org/ and h
 
 ## Summary of Observations
 
-Below is a table with observations on all nine tokenizer services. See below for slightly more verbose observations.
+Below is a table with observations on all nine tokenizer services (plus one added later: vassar/lingpipe.splitter_1.1.1-SNAPSHOT). See below for slightly more verbose observations.
 
-service                                   | requires    | produces  | other
----                                       | ---         | ---       | ---
-stanford/vassar.tokenizer_2.0.0.xml       | 1           | &check;   | 2, 3, 4, 5
-stanford/vassar.tokenizer_2.1.0.xml       | &check;     | &check;   | 2, 6, 7
-stanford/brandeis.tokenizer.xml           | &check;     | &check;   | 2, 8
-gate/gate.tokenizer_2.2.0.xml             | 9, 10       | &check;   | 2, 3, 4
-gate/gate.tokenizer_2.3.0.xml             | 9, 10       | &check;   | 2, 3, 4
-opennlp/opennlp.tokenizer.xml             | 11          | &check;   | 2, 8
-lingpipe/vassar.tokenizer_1.0.0.xml       | &check;     | &check;   | 2, 6, 12
-dkpro/dkpro.stanford.tokenizer.xml        | 13, 14      | &check;   | 2, 3, 4, 8, 15
-dkpro/dkpro.opennlp.tokenizer.xml         | 13, 14      | &check;   | 2, 3, 4, 8, 15
+service                                      | requires    | produces  | other
+---                                          | ---         | ---       | ---
+stanford/vassar.tokenizer_2.0.0.xml          | 1           | &check;   | 2, 3, 4, 5
+stanford/vassar.tokenizer_2.1.0.xml-SNAPSHOT | &check;     | &check;   | 2, 6, 7<sup>&dagger;</sup>
+stanford/brandeis.tokenizer.xml              | &check;     | &check;   | 2, 8
+gate/gate.tokenizer_2.2.0.xml                | 9, 10       | &check;   | 2, 3, 4
+gate/gate.tokenizer_2.3.0.xml                | 9, 10       | &check;   | 2, 3, 4
+opennlp/opennlp.tokenizer.xml                | 11          | &check;   | 2, 8
+lingpipe/vassar.tokenizer_1.0.0.xml          | &check;     | &check;   | 2, 6, 12
+vassar/lingpipe.splitter_1.1.1-SNAPSHOT      | 16          | 17        | 3
+dkpro/dkpro.stanford.tokenizer.xml           | 13, 14      | &check;   | 2, 3, 4, 8, 15
+dkpro/dkpro.opennlp.tokenizer.xml            | 13, 14      | &check;   | 2, 3, 4, 8, 15
+
+<sup>&dagger;</sup> This issue was fixed in a more recent release of the snapshot.
 
 The `requires` column indicates whether tool requirements from metadata match its behavior when given input whereas the `produces` column indicates whether what the tool produces matches what is specified in the metadata. Any other observations are in the `other` column. Check marks indicate all is well, the number refer to elements from the list below.
 
@@ -36,6 +39,9 @@ The `requires` column indicates whether tool requirements from metadata match it
 13. Service requirements say text input is not allowed, but will accept text
 14. Service requirements say Tokens are required, but they are not
 15. Annotation list contains Sentence type, but these are not in the view metadata
+
+16. Service requires text or json#lapps, but accepts only text input
+17. Services creates LIF output but discriminator is lapps (as specified in metadata)
 
 Here is the list of types used in the view metadata:
 
@@ -82,17 +88,18 @@ dkpro/dkpro.opennlp.tokenizer.xml
 
 Service metadata from http://api.lappsgrid.org/:
 
-service                             | requires            | produces
----                                 | ---                 | ---
-stanford/vassar.tokenizer_2.0.0.xml | json#lif            | json#lif, Token
-stanford/vassar.tokenizer_2.1.0.xml | text, json#lif      | json#lif, Token
-stanford/brandeis.tokenizer.xml     | text, json#lif      | json#lif, Token
-gate/gate.tokenizer_2.2.0.xml       | text, xml, xml#gate | xml#gate, Token
-gate/gate.tokenizer_2.3.0.xml       | text, xml, xml#gate | xml#gate, Token     
-opennlp/opennlp.tokenizer.xml       | json#lif            | json#lif, Token
-lingpipe/vassar.tokenizer_1.0.0.xml | text, json#lif      | json#lif, Token
-dkpro/dkpro.stanford.tokenizer.xml  | json#lif, Token     | json#lif, Token
-dkpro/dkpro.opennlp.tokenizer.xml   | json#lif, Token     | json#lif, Token
+service                                 | requires            | produces
+---                                     | ---                 | ---
+stanford/vassar.tokenizer_2.0.0.xml     | json#lif            | json#lif, Token
+stanford/vassar.tokenizer_2.1.0.xml     | text, json#lif      | json#lif, Token
+stanford/brandeis.tokenizer.xml         | text, json#lif      | json#lif, Token
+gate/gate.tokenizer_2.2.0.xml           | text, xml, xml#gate | xml#gate, Token
+gate/gate.tokenizer_2.3.0.xml           | text, xml, xml#gate | xml#gate, Token     
+opennlp/opennlp.tokenizer.xml           | json#lif            | json#lif, Token
+lingpipe/vassar.tokenizer_1.0.0.xml     | text, json#lif      | json#lif, Token
+vassar/lingpipe.splitter_1.1.1-SNAPSHOT | text, jsonld#lapps  | jsonld#lapps, Token
+dkpro/dkpro.stanford.tokenizer.xml      | json#lif, Token     | json#lif, Token
+dkpro/dkpro.opennlp.tokenizer.xml       | json#lif, Token     | json#lif, Token
 
 
 ## Running the Tokenizers
@@ -207,6 +214,13 @@ lingpipe/vassar.tokenizer_1.0.0.xml
 - View metadata type is tokenizer:lingpipe-indo-european-tokenizer
 - When running on LIF input the `@context` attribute disappears
 - There is no `@language` attribute when input is text
+
+vassar/lingpipe.tokenizer_1.1.1-SNAPSHOT
+
+- Service requires text or json#lapps, but accepts only text input
+- Services creates LIF output but discriminator is lapps (as specified in metadata)
+- There is no `@language` attribute
+- View metadata has type `tokenizer:lingpipe-indo-european-tokenizer`
 
 dkpro/dkpro.stanford.tokenizer.xml
 

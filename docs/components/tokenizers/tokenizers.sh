@@ -37,7 +37,8 @@ source ../splitters/utils.sh
 if [ $1 = vassar ] || [ $1 = all ];
 then
     invoker=vassar
-    services=( stanford.tokenizer_2.0.0
+    services=( lingpipe.tokenizer_1.1.1-SNAPSHOT
+	       stanford.tokenizer_2.0.0
 	       stanford.tokenizer_2.1.0-SNAPSHOT )
     specs=( txt:nil lif:nil lif:ner gate:nil )
     run_regular_services

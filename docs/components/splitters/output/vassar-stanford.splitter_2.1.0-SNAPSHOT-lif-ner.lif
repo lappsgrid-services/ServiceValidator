@@ -28,8 +28,7 @@
                         "@type": "http://vocab.lappsgrid.org/Person",
                         "features": {
                             "word": "Karen"
-                        },
-                        "metadata": null
+                        }
                     },
                     {
                         "id": "ne_1",
@@ -38,8 +37,7 @@
                         "@type": "http://vocab.lappsgrid.org/Location",
                         "features": {
                             "word": "New"
-                        },
-                        "metadata": null
+                        }
                     },
                     {
                         "id": "ne_2",
@@ -48,8 +46,7 @@
                         "@type": "http://vocab.lappsgrid.org/Location",
                         "features": {
                             "word": "York"
-                        },
-                        "metadata": null
+                        }
                     }
                 ]
             },

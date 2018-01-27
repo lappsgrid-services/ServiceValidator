@@ -1,4 +1,4 @@
 {
     "discriminator": "http://vocab.lappsgrid.org/ns/error",
-    "payload": "Unable to process input: no tokens found"
+    "payload": "INVALID INPUT: no tokens found"
 }

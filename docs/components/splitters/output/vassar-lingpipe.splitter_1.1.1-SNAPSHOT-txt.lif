@@ -1,0 +1,37 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld#lapps",
+    "payload": {
+        "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
+        "metadata": {
+            
+        },
+        "text": {
+            "@value": "Karen flies to New York and she is happy about that.\n"
+        },
+        "views": [
+            {
+                "id": "v1",
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/Sentence": {
+                            "producer": "edu.cmu.lti.oaqa.lapps.LingpipeSentenceSplitter",
+                            "type": "tokenizer:lingpipe-indo-european-tokenizer"
+                        }
+                    }
+                },
+                "annotations": [
+                    {
+                        "id": "lingpipe-sentence-1",
+                        "start": 0,
+                        "end": 52,
+                        "@type": "http://vocab.lappsgrid.org/Sentence",
+                        "label": "sentence"
+                    }
+                ]
+            }
+        ]
+    },
+    "parameters": {
+        
+    }
+}

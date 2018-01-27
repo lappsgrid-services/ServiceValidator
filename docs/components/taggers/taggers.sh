@@ -37,7 +37,9 @@ source ../splitters/utils.sh
 if [ $1 = vassar ] || [ $1 = all ];
 then
     invoker=vassar
-    services=( stanford.tagger_2.0.0 stanford.tagger_2.1.0-SNAPSHOT )
+    services=( lingpipe.tagger_1.1.1-SNAPSHOT
+	       stanford.tagger_2.0.0
+	       stanford.tagger_2.1.0-SNAPSHOT )
     specs=( txt:nil lif:nil lif:tok lif:ner gate:nil )
     run_regular_services
 fi
@@ -48,11 +50,10 @@ fi
 if [ $1 = brandeis ] || [ $1 = all ];
 then
     invoker=brandeis
-    services=(
-	stanfordnlp.postagger_2.0.4
-	opennlp.postagger_2.0.3
-	uima.dkpro.stanfordnlp.postagger_0.0.1
-	uima.dkpro.opennlp.postagger_0.0.1 )
+    services=( stanfordnlp.postagger_2.0.4
+	       opennlp.postagger_2.0.3
+	       uima.dkpro.stanfordnlp.postagger_0.0.1
+	       uima.dkpro.opennlp.postagger_0.0.1 )
     specs=( txt:nil lif:nil lif:tok lif:ner gate:nil )
     run_regular_services
 fi

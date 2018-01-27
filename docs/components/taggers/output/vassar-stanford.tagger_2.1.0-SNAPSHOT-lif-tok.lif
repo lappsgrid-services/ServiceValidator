@@ -29,8 +29,7 @@
                         "label": "token",
                         "features": {
                             "word": "Karen"
-                        },
-                        "metadata": null
+                        }
                     },
                     {
                         "id": "tok_1",
@@ -40,8 +39,7 @@
                         "label": "token",
                         "features": {
                             "word": "flies"
-                        },
-                        "metadata": null
+                        }
                     },
                     {
                         "id": "tok_2",
@@ -50,8 +48,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "features": {
                             "word": "to"
-                        },
-                        "metadata": null
+                        }
                     },
                     {
                         "id": "tok_3",
@@ -60,8 +57,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "features": {
                             "word": "New"
-                        },
-                        "metadata": null
+                        }
                     },
                     {
                         "id": "tok_4",
@@ -70,8 +66,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "features": {
                             "word": "York"
-                        },
-                        "metadata": null
+                        }
                     },
                     {
                         "id": "tok_5",
@@ -80,8 +75,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "features": {
                             "word": "and"
-                        },
-                        "metadata": null
+                        }
                     },
                     {
                         "id": "tok_6",
@@ -90,8 +84,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "features": {
                             "word": "she"
-                        },
-                        "metadata": null
+                        }
                     },
                     {
                         "id": "tok_7",
@@ -100,8 +93,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "features": {
                             "word": "is"
-                        },
-                        "metadata": null
+                        }
                     },
                     {
                         "id": "tok_8",
@@ -110,8 +102,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "features": {
                             "word": "happy"
-                        },
-                        "metadata": null
+                        }
                     },
                     {
                         "id": "tok_9",
@@ -120,8 +111,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "features": {
                             "word": "about"
-                        },
-                        "metadata": null
+                        }
                     },
                     {
                         "id": "tok_10",
@@ -130,8 +120,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "features": {
                             "word": "that"
-                        },
-                        "metadata": null
+                        }
                     },
                     {
                         "id": "tok_11",
@@ -140,12 +129,12 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "features": {
                             "word": "."
-                        },
-                        "metadata": null
+                        }
                     }
                 ]
             },
             {
+                "id": "v2",
                 "metadata": {
                     "contains": {
                         "http://vocab.lappsgrid.org/Token#pos": {

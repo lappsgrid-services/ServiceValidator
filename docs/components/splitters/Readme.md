@@ -1,37 +1,26 @@
 # Sentence Splitters
 
-Consistency checking on all splitters used on http://galaxy.lappsgrid.org/ and http://jetstream.lappsgrid.org/. The first section below has the final observations on all splitters, subsequent sections go into the process followed to get there.
+Consistency checking on all splitters used on http://galaxy.lappsgrid.org/ and http://jetstream.lappsgrid.org/. The first section below has the final observations on all splitters, subsequent sections go into the process followed to get there (including many notes to self, probably in way to much detail, this will be cleaned up).
 
 
 ## Summary of Observations
 
-The Galaxy servers listed above use nine unique sentence splitters on the Brandeis and Vassar nodes of the grid. We are looking at those services with the following requirements in mind:
-
-- If a service says it requires one of several formats (for example `lif` or `text`), then it should work with those formats and fail gracefully with an error message (something like "Unsupported input type: gate"). We are assuming that when the discriminator says the payload is LIF that the payload actually is LIF, that is, we assume well-formed input.
-
-- If a service says it requires a set of annotation types to be in the input (for example `Token` and `Sentence`), then all those types should be in the input, otherwise the service should fail gracefully with an error message. For now, we assuming that "available in the input" means that there is a view where the metadata says the view contains that annotation type. This may be extended to meaning that there actually are such annotations in the annotations list.
-
-- If a service says it produces output in a certain format than it should do so.
-
-- If a service says it produces certain kinds of annotations then it should do so.
-
-- A service should always create well-formed output. Here, we are mostly concerned about LIF output.
-
-- Services should not remove existing layers.
-
-Below is a table with observations on all nine splitter services. See the "Running splitters using LSD" for slightly more verbose observations.
+The Galaxy servers listed above use nine unique sentence splitters on the Brandeis and Vassar nodes of the grid. Below is a table with observations on all nine splitter services plus one that was added after the first round of observations (lingpipe.splitter_1.1.1-SNAPSHOT).
 
 service                                         | requires    | produces  | other
 ---                                             | ---         | ---       | ---
 vassar stanford.splitter_2.0.0                  | 1           | 2         | 3, 4, 5
-vassar stanford.splitter_2.1.0-SNAPSHOT         | 6           | &check;   | 3, 5, 7
+vassar stanford.splitter_2.1.0-SNAPSHOT         | 6           | &check;   | 3, 5, 7<sup>&dagger;</sup>
 brandeis stanfordnlp.splitter_2.0.4             | &check;     | &check;   | 3, 8
 vassar gate.splitter_2.2.0                      | 9, 10       | &check;   | 3, 11, 12
 vassar gate.splitter_2.3.0                      | 9, 10       | &check;   | 3, 11, 12
 brandeis opennlp.splitter_2.0.3                 | 13          | &check;   | 3, 8
 vassar LingpipeSentenceSplitter                 | &check;     | &check;   | 3, 4, 14
+vassar lingpipe.splitter_1.1.1-SNAPSHOT         | 17          | 18        | 11
 brandeis uima.dkpro.stanfordnlp.splitter_0.0.1  | 15          | 16        | 3, 8, 11, 12
 brandeis uima.dkpro.opennlp.splitter_0.0.1      | 15          | 16        | 3, 8, 11, 12
+
+<sup>&dagger;</sup> This issue was fixed in a more recent release of the snapshot.
 
 The columns are to be interpreted as follows:
 
@@ -53,6 +42,9 @@ The `requires` column indicates whether tool requirements from metadata match it
 14. View metadata has type `tokenizer:lingpipe-indo-european-tokenizer`, which is weird given this is a splitter
 15. Service metadata say input needs Sentence annotations
 16. View metadata says the view contains Token#pos
+17. Service requires text or json#lapps, but accepts only text input
+18. Services creates LIF output but discriminator is lapps (as specified in metadata)
+19. View metadata has type `tokenizer:lingpipe-indo-european-tokenizer` which seems weird
 
 To finish this summary, here is a list of types used in the view metadata:
 
@@ -62,6 +54,7 @@ To finish this summary, here is a list of types used in the view metadata:
 - splitter:opennlp
 - splitter:dkpro_stanford
 - splitter:dkpro_opennlp
+- tokenizer:lingpipe-indo-european-tokenizer
 
 We need a bit more of a theory on how to use the type attribute. An initial proposal:
 
@@ -70,7 +63,7 @@ We need a bit more of a theory on how to use the type attribute. An initial prop
 
 
 
-## Rounding up the Splitters
+## Rounding up the Services
 
 Below are the splitters we have on http://galaxy.lappsgrid.org/. The names used are the names as displayed in the `Sentence Splitters` tools submenu taking both the name and the description.
 
@@ -113,6 +106,8 @@ Note that the Lingpipe splitter does not appear to have a version number on it, 
 ```
 String url = "http://grid.anc.org:9080/LingpipeServices/1.0.0-SNAPSHOT/services/$service"
 ```
+
+Also note that LingpipeSentenceSplitter is not a service registered at the service manager and it is invoked directly at its service url on the Tomcat server.
 
 Here is the same for the Jetstream Galaxy server at http://jetstream.lappsgrid.org/, which uses the develop branch in https://github.com/lappsgrid-incubator/GalaxyMods instead of the master branch.
 
@@ -170,8 +165,10 @@ Lingpipe SentenceSplitter v1.0.0             | vassar   | LingpipeSentenceSplitt
 DKPro Core Stanford Splitter v1.7.0          | brandeis | uima.dkpro.stanfordnlp.splitter_0.0.1
 DKPro Core OpenNLP Splitter v1.7.0           | brandeis | uima.dkpro.opennlp.splitter_0.0.1
 
+In addition, we also tested the Lingpipe LingpipeSentenceSplitter v1.1.1-SNAPSHOT on the Vassar server.
 
-## Declared Metadata
+
+## Service Metadata
 
 Using
 
@@ -321,6 +318,7 @@ v gate.splitter_2.2.0                   | xml#gate, Token         | xml#gate, Se
 v gate.splitter_2.3.0                   | xml#gate, Token         | xml#gate, Sentence
 b opennlp.splitter_2.0.3                | jsonld#lif              | jsonld#lif, Sentence
 v LingpipeSentenceSplitter              | text, jsonld#lif        | jsonld#lif, Sentence
+v lingpipe.splitter_1.1.1-SNAPSHOT      | text, jsonld#lapps      | jsonld#lapps, Sentence
 b uima.dkpro.stanfordnlp.splitter_0.0.1 | jsonld#lif, Sentence    | jsonld#lif, Sentence
 b uima.dkpro.opennlp.splitter_0.0.1     | jsonld#lif, Sentence    | jsonld#lif, Sentence
 
@@ -500,6 +498,13 @@ vassar LingpipeSentenceSplitter
 - Fails correctly on GATE input and accepts both text and LIF
 - On LIF input it fails to preserve the `@context` attribute (but it does add it for text input)
 - Preserves the existing layer correctly
+
+vassar lingpipe.splitter_1.1.1-SNAPSHOT
+
+- Service requires text or json#lapps, but accepts only text input
+- Services creates LIF output but discriminator is lapps (as specified in metadata)
+- There is no `@language` attribute
+- View metadata has type `tokenizer:lingpipe-indo-european-tokenizer`
 
 brandeis uima.dkpro.stanfordnlp.splitter_0.0.1
 

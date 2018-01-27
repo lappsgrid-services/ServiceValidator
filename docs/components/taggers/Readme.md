@@ -5,19 +5,20 @@ Consistency checking on all taggers used on http://galaxy.lappsgrid.org/ and htt
 
 ## Summary of Observations
 
-Below is a table with observations on nine tagger services. See further down for more verbose observations.
+Below is a table with observations on nine tagger services (plus one added later: lingpipe.tagger_1.1.1-SNAPSHOT). See further down for more verbose observations.
 
-service                             | requires    | produces  | other
----                                 | ---         | ---       | ---
-stanford/vassar.tagger_2.0.0.xml    | 1           | &check;   | 2, 3, 4, 5
-stanford/vassar.tagger_2.1.0.xml    | &check;     | &check;   | 2, 4, 5
-stanford/brandeis.postagger.xml     | &check;     | &check;   | 2, 5, 6, 7
-gate/gate.tagger_2.2.0.xml          | 8           | &check;   | 5, 9, 10
-gate/gate.tagger_2.3.0.xml          | 8           | &check;   | 5, 9, 10
-opennlp/opennlp.postagger.xml       | 1           | &check;   | 2, 5, 6, 7
-lingpipe/vassar.tagger_1.0.0.xml    | &check;     | &check;   | 2, 3, 5, 6
-dkpro/dkpro.stanford.postagger.xml  | 1, 11       | 12        | 5, 7, 9
-dkpro/dkpro.opennlp.postagger.xml   | 1, 11       | 12        | 5, 6, 7, 9
+service                                   | requires    | produces  | other
+---                                       | ---         | ---       | ---
+stanford/vassar.tagger_2.0.0.xml          | 1           | &check;   | 2, 3, 4, 5
+stanford/vassar.tagger_2.1.0.xml-SNAPSHOT | &check;     | &check;   | 2, 4, 5
+stanford/brandeis.postagger.xml           | &check;     | &check;   | 2, 5, 6, 7
+gate/gate.tagger_2.2.0.xml                | 8           | &check;   | 5, 9, 10
+gate/gate.tagger_2.3.0.xml                | 8           | &check;   | 5, 9, 10
+opennlp/opennlp.postagger.xml             | 1           | &check;   | 2, 5, 6, 7
+lingpipe/vassar.tagger_1.0.0.xml          | &check;     | &check;   | 2, 3, 5, 6
+lingpipe.tagger_1.1.1-SNAPSHOT            | 13, 14      | -         | -
+dkpro/dkpro.stanford.postagger.xml        | 1, 11       | 12        | 5, 7, 9
+dkpro/dkpro.opennlp.postagger.xml         | 1, 11       | 12        | 5, 6, 7, 9
 
 The `requires` column indicates whether tool requirements from metadata match its behavior when given input whereas the `produces` column indicates whether what the tool produces matches what is specified in the metadata. Any other observations are in the `other` column. Check marks indicate all is well, the number refer to elements from the list below.
 
@@ -33,6 +34,8 @@ The `requires` column indicates whether tool requirements from metadata match it
 10. All output is in one view (LIF input before conversion had one views too), but the amended view does not have an identifier anymore
 11. Service requires Token#pos but this is not enforced
 12. Service produces Sentence annotations, but this is not in the metadata nor is it declared in the view metadata
+13. Service requires text or json#lapps, but accepts only text input
+14. When given text input it complains about missing tokens (which is actually correct given the service requirements)
 
 The Vassar Stanford taggers copy existing tokens into the new view, correctness of the copy was not checked. Related to this we may need to pick up on introducing `dependsOn` again.
 
@@ -82,17 +85,18 @@ dkpro/dkpro.opennlp.postagger.xml
 
 Service metadata from http://api.lappsgrid.org/:
 
-service                            | requires                  | produces
----                                | ---                       | ---
-stanford/vassar.tagger_2.0.0.xml   | jsonld#lif, Token         | jsonld#lif, Token#pos
-stanford/vassar.tagger_2.1.0.xml   | jsonld#lif, Token         | jsonld#lif, Token#pos
-stanford/brandeis.postagger.xml    | text, jsonld#lif          | jsonld#lif, Token#pos
-gate/gate.tagger_2.2.0.xml         | xml#gate, Token, Sentence | xml#gate, Token#pos
-gate/gate.tagger_2.3.0.xml         | xml#gate, Token, Sentence | xml#gate, Token#pos
-opennlp/opennlp.postagger.xml      | jsonld#lif, Token         | jsonld#lif, Token#pos
-lingpipe/vassar.tagger_1.0.0.xml   | text, jsonld#lif, Token   | jsonld#lif, Token#pos
-dkpro/dkpro.stanford.postagger.xml | jsonld#lif, Token#pos     | jsonld#lif, Token#pos
-dkpro/dkpro.opennlp.postagger.xml  | jsonld#lif, Token#pos     | jsonld#lif, Token#pos
+service                               | requires                  | produces
+---                                   | ---                       | ---
+stanford/vassar.tagger_2.0.0.xml      | jsonld#lif, Token         | jsonld#lif, Token#pos
+stanford/vassar.tagger_2.1.0.xml      | jsonld#lif, Token         | jsonld#lif, Token#pos
+stanford/brandeis.postagger.xml       | text, jsonld#lif          | jsonld#lif, Token#pos
+gate/gate.tagger_2.2.0.xml            | xml#gate, Token, Sentence | xml#gate, Token#pos
+gate/gate.tagger_2.3.0.xml            | xml#gate, Token, Sentence | xml#gate, Token#pos
+opennlp/opennlp.postagger.xml         | jsonld#lif, Token         | jsonld#lif, Token#pos
+lingpipe/vassar.tagger_1.0.0.xml      | text, jsonld#lif, Token   | jsonld#lif, Token#pos
+vassar/lingpipe.tagger_1.1.1-SNAPSHOT | text, jsonld#lapps, Token | jsonld#lapps, Token#pos
+dkpro/dkpro.stanford.postagger.xml    | jsonld#lif, Token#pos     | jsonld#lif, Token#pos
+dkpro/dkpro.opennlp.postagger.xml     | jsonld#lif, Token#pos     | jsonld#lif, Token#pos
 
 
 ## Running the Taggers
@@ -165,6 +169,11 @@ lingpipe/vassar.tagger_1.0.0.xml
 - New view has no identifier
 - View metadata does not have `posTagSet` attribute
 - The type of all new annotations is `Token#pos`, should be `Token`
+
+vassar/lingpipe.tagger_1.1.1-SNAPSHOT
+
+- Service requires text or json#lapps, but accepts only text input
+- When given text input it complains about missing tokens (which is actually correct given the service requirements)
 
 dkpro/dkpro.stanford.postagger.xml
 
