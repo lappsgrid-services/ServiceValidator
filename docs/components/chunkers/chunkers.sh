@@ -18,6 +18,9 @@ LSD=/Users/marc/bin/lsd
 # Base name of input files
 INPUT=../input/karen-flies
 
+# utilities used by script
+source ../splitters/utils.sh
+
 
 # Now run the services in groups. Groups are determined by what the invoker
 # script is and the final result is put in the output directory. The name of the
@@ -33,52 +36,9 @@ INPUT=../input/karen-flies
 
 if [ $1 = gate ] || [ $1 = all ];
 then
-
+    invoker=gate
     services=( gate.npchunker_2.2.0 gate.vpchunker_2.2.0
 	       gate.npchunker_2.3.0 gate.vpchunker_2.3.0 )
-
-    for service in "${services[@]}"
-    do
-	echo "gate/invoke.lsd $service"
-
-	# Running on empty gate input, text input and LIF input with sentences and tokens
-
-	echo "   $INPUT.gate"
-	OUT=output/gate-$service-gate
-	$LSD $TOOLS/gate/invoke.lsd $service $INPUT.gate $OUT.gate
-	$LSD $TOOLS/converters/invoke.lsd convert.gate2json_2.0.0 $OUT.gate true $OUT.lif
-
-	echo "   $INPUT.txt"
-	OUT=output/gate-$service-txt
-	$LSD $TOOLS/gate/invoke.lsd $service $INPUT.txt $OUT.gate
-	$LSD $TOOLS/converters/invoke.lsd convert.gate2json_2.0.0 $OUT.gate true $OUT.lif
-
-	echo "   $INPUT.tok.sent.lif"
-	OUT=output/gate-$service-lif-tok-sent
-	$LSD $TOOLS/gate/invoke.lsd $service $INPUT.tok.sent.lif $OUT.gate
-	$LSD $TOOLS/converters/invoke.lsd convert.gate2json_2.0.0 $OUT.gate true $OUT.lif
-
-	# Now on GATE input with tokens, sentences and both
-
-	echo "   $INPUT.tok.gate"
-	OUT=output/gate-$service-gate-tok
-	$LSD $TOOLS/gate/invoke.lsd $service $INPUT.tok.gate $OUT.gate
-	$LSD $TOOLS/converters/invoke.lsd convert.gate2json_2.0.0 $OUT.gate true $OUT.lif
-
-	echo "   $INPUT.sent.gate"
-	OUT=output/gate-$service-gate-sent
-	$LSD $TOOLS/gate/invoke.lsd $service $INPUT.sent.gate $OUT.gate
-	$LSD $TOOLS/converters/invoke.lsd convert.gate2json_2.0.0 $OUT.gate true $OUT.lif
-
-	echo "   $INPUT.tok.sent.gate"
-	OUT=output/gate-$service-gate-tok-sent
-	$LSD $TOOLS/gate/invoke.lsd $service $INPUT.tok.sent.gate $OUT.gate
-	$LSD $TOOLS/converters/invoke.lsd convert.gate2json_2.0.0 $OUT.gate true $OUT.lif
-
-	echo "   $INPUT.tok.pos.sent.gate"
-	OUT=output/gate-$service-gate-tok-pos-sent
-	$LSD $TOOLS/gate/invoke.lsd $service $INPUT.tok.sent.gate $OUT.gate
-	$LSD $TOOLS/converters/invoke.lsd convert.gate2json_2.0.0 $OUT.gate true $OUT.lif
-
-    done
+    specs=( txt:nil lif:nil lif:tok.sent gate:nil gate:tok gate:sent gate:tok.sent gate:tok.pos.sent )
+    run_gate_services
 fi
