@@ -19,14 +19,6 @@
                         "http://vocab.lappsgrid.org/Sentence": {
                             "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.Splitter:2.0.4",
                             "type": "splitter:stanford"
-                        },
-                        "http://vocab.lappsgrid.org/Token#pos": {
-                            "producer": "edu.brandeis.cs.lappsgrid.opennlp.POSTagger:2.0.3",
-                            "type": "tagger:opennlp"
-                        },
-                        "http://vocab.lappsgrid.org/NounChunk": {
-                            "producer": "org.anc.lapps.gate.NounPhraseChunker_2.2.0",
-                            "type": "gate"
                         }
                     }
                 },
@@ -48,7 +40,6 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
-                            "pos": "NNP",
                             "word": "Karen"
                         }
                     },
@@ -59,7 +50,6 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
-                            "pos": "VBZ",
                             "word": "flies"
                         }
                     },
@@ -70,7 +60,6 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
-                            "pos": "TO",
                             "word": "to"
                         }
                     },
@@ -81,7 +70,6 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
-                            "pos": "NNP",
                             "word": "New"
                         }
                     },
@@ -92,7 +80,6 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
-                            "pos": "NNP",
                             "word": "York"
                         }
                     },
@@ -103,7 +90,6 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
-                            "pos": "CC",
                             "word": "and"
                         }
                     },
@@ -114,7 +100,6 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
-                            "pos": "PRP",
                             "word": "she"
                         }
                     },
@@ -125,7 +110,6 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
-                            "pos": "VBZ",
                             "word": "is"
                         }
                     },
@@ -136,7 +120,6 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
-                            "pos": "JJ",
                             "word": "happy"
                         }
                     },
@@ -147,7 +130,6 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
-                            "pos": "IN",
                             "word": "about"
                         }
                     },
@@ -158,7 +140,6 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
-                            "pos": "DT",
                             "word": "that"
                         }
                     },
@@ -169,37 +150,8 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
-                            "pos": ".",
                             "word": "."
                         }
-                    },
-                    {
-                        "id": "13",
-                        "start": 0,
-                        "end": 5,
-                        "@type": "http://vocab.lappsgrid.org/NounChunk",
-                        "label": "NounChunk"
-                    },
-                    {
-                        "id": "14",
-                        "start": 15,
-                        "end": 23,
-                        "@type": "http://vocab.lappsgrid.org/NounChunk",
-                        "label": "NounChunk"
-                    },
-                    {
-                        "id": "15",
-                        "start": 28,
-                        "end": 31,
-                        "@type": "http://vocab.lappsgrid.org/NounChunk",
-                        "label": "NounChunk"
-                    },
-                    {
-                        "id": "16",
-                        "start": 47,
-                        "end": 51,
-                        "@type": "http://vocab.lappsgrid.org/NounChunk",
-                        "label": "NounChunk"
                     }
                 ]
             }

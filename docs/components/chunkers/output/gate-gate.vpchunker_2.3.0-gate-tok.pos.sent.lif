@@ -19,6 +19,10 @@
                         "http://vocab.lappsgrid.org/Sentence": {
                             "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.Splitter:2.0.4",
                             "type": "splitter:stanford"
+                        },
+                        "http://vocab.lappsgrid.org/Token#pos": {
+                            "producer": "edu.brandeis.cs.lappsgrid.opennlp.POSTagger:2.0.3",
+                            "type": "tagger:opennlp"
                         }
                     }
                 },
@@ -40,6 +44,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
+                            "pos": "NNP",
                             "word": "Karen"
                         }
                     },
@@ -50,6 +55,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
+                            "pos": "VBZ",
                             "word": "flies"
                         }
                     },
@@ -60,6 +66,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
+                            "pos": "TO",
                             "word": "to"
                         }
                     },
@@ -70,6 +77,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
+                            "pos": "NNP",
                             "word": "New"
                         }
                     },
@@ -80,6 +88,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
+                            "pos": "NNP",
                             "word": "York"
                         }
                     },
@@ -90,6 +99,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
+                            "pos": "CC",
                             "word": "and"
                         }
                     },
@@ -100,6 +110,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
+                            "pos": "PRP",
                             "word": "she"
                         }
                     },
@@ -110,6 +121,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
+                            "pos": "VBZ",
                             "word": "is"
                         }
                     },
@@ -120,6 +132,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
+                            "pos": "JJ",
                             "word": "happy"
                         }
                     },
@@ -130,6 +143,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
+                            "pos": "IN",
                             "word": "about"
                         }
                     },
@@ -140,6 +154,7 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
+                            "pos": "DT",
                             "word": "that"
                         }
                     },
@@ -150,7 +165,32 @@
                         "@type": "http://vocab.lappsgrid.org/Token",
                         "label": "Token",
                         "features": {
+                            "pos": ".",
                             "word": "."
+                        }
+                    },
+                    {
+                        "id": "13",
+                        "start": 6,
+                        "end": 11,
+                        "@type": "VG",
+                        "label": "VG",
+                        "features": {
+                            "type": "FVG",
+                            "voice": "active",
+                            "tense": "SimPre"
+                        }
+                    },
+                    {
+                        "id": "14",
+                        "start": 32,
+                        "end": 34,
+                        "@type": "VG",
+                        "label": "VG",
+                        "features": {
+                            "type": "FVG",
+                            "voice": "active",
+                            "tense": "SimPre"
                         }
                     }
                 ]
