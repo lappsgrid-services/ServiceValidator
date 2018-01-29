@@ -4,27 +4,36 @@ Consistency checking on all named entity recognizers used on http://galaxy.lapps
 
 ## Summary of Observations
 
-Below is a table with observations on twelve named entity services. See further down for more verbose observations.
+Below is a table with observations on fifteen named entity services . See further down for more verbose observations.
 
-service                                         | requires   | produces  | other
----                                             | ---        | ---       | ---
-stanford/vassar.ner_2.0.0.xml                   | 1, 2       | &check;   | 3, 4, 5
-stanford/vassar.ner_2.1.0.xml                   | 1, 2       | &check;   | 3, 4, 6
-stanford/vassar.ner2_2.0.0.xml                  | 1, 2       | &check;   | 7, 8
-stanford/brandeis.namedentityrecognizer.xml     | 9, 10      | &check;   | 3, 11, 12, 13
-gate/gate.ner_2.2.0.xml                         | 1, 14      | &check;   | 15, 16
-gate/gate.ner_2.3.0.xml                         | 1, 14      | &check;   | 15, 16
-opennlp/opennlp.namedentityrecognizer.xml       | 17         | &check;   | 3, 11, 12, 13
-lingpipe/cmu.dictionaryNER_1.0.0.xml            | &check;    | &check;   | 3, 13, 18
-lingpipe/vassar.ner_1.0.0.xml                   | 9          | &check;   | 3, 5, 18,
-dkpro/dkpro.stanford.namedentityrecognizer.xml  | 9          | &check;   | 3, 15, 19, 20
-dkpro/dkpro.opennlp.namedentityrecognizer.xml   | 9          | &check;   | 3, 15, 19, 21
-dbpedia/spotlight.xml                           | &check;    | -         | 22
+service                                               | requires | produces | other
+---                                                   | ---      | ---      | ---
+v stanford.ner_2.0.0                                  | 1, 2     | &check;  | 3, 4, 5
+v stanford.ner_2.1.0-SNAPSHOT                         | 1, 2     | &check;  | 3, 4, 6
+&Dagger; SelectableNamedEntityRecognizer              | 1, 2     | &check;  | 7&dagger;, 8
+v stanford.ner2_2.1.0-SNAPSHOT                        | -        | -        | -
+b stanfordnlp.namedentityrecognizer_2.0.4             | 9, 10    | &check;  | 3, 11, 12, 13
+v gate.ner_2.2.0                                      | 1, 14    | &check;  | 15, 16
+v gate.ner_2.3.0                                      | 1, 14    | &check;  | 15, 16
+b opennlp.namedentityrecognizer_2.0.3                 | 17       | &check;  | 3, 11, 12, 13
+&#9796; LingPipeNER                                   | &check;  | &check;  | 3, 5, 18
+&#9795; LingpipeDictionaryBasedNER                    | &check;  | &check;  | 3, 13, 18
+v lingpipe.ner_1.1.1-SNAPSHOT                         | -        | -        | -
+v lingpipe.dictionary_ner_1.1.1-SNAPSHOT              | -        | -        | -
+b uima.dkpro.stanfordnlp.namedentityrecognizer_0.0.1  | 9        | &check;  | 3, 15, 19, 20
+b uima.dkpro.opennlp.namedentityrecognizer_0.0.1      | 9        | &check;  | 3, 15, 19, 21
+&#9797; DBpediaSpotlightAnnotator                     | &check;  | -        | 22
+
+&dagger; This issue was fixed in a more recent release of the snapshot.<br/>
+&Dagger; http://grid.anc.org:9080/StanfordServices/2.1.0-SNAPSHOT/services/SelectableNamedEntityRecognizer <br/>
+&#9795; http://grid.anc.org:9080/LingpipeServices/1.1.0/services/LingpipeDictionaryBasedNER <br/>
+&#9796; http://grid.anc.org:9080/LingpipeServices/1.0.0-SNAPSHOT/services/LingpipeNER <br/>
+&#9797; http://grid.anc.org:9080/DBpediaSpotlightServices/1.0.0/services/DBpediaSpotlightAnnotator
 
 The `requires` column indicates whether tool requirements from metadata match its behavior when given input whereas the `produces` column indicates whether what the tool produces matches what is specified in the metadata. Any other observations are in the `other` column. Check marks indicate all is well, the numbers refer to elements from the list below.
 
-1. Service requires Tokens but this is not enforced
-2. Service seems to require Token#pos as well, but this is not specified
+1. - Service requires Tokens but error message does not say that
+2. Service requires Token#pos, but error message does not say that
 3. New view has no identifier
 4. When Tokens (but no pos) are available all that happens is that an empty new view is created
 5. On LIF input the `@context` attribute is lost
@@ -55,7 +64,7 @@ Types used in view metadata:
 - ner:dkpo_stanford
 
 
-## Rounding up the Named Entity Recognizers
+## Rounding up the Services
 
 Taken from https://github.com/lappsgrid-incubator/GalaxyMods/blob/master/config/tool_conf.xml and its sister in the develop branch, with the invokers lifted from the Galaxy XML wrappers.
 
@@ -112,45 +121,46 @@ common/nerfix.xml
   (ignore, this is a normalizer and is not associated with a service)
 ```
 
-## Declared Metadata
+## Service Metadata
 
 Service metadata from http://api.lappsgrid.org/:
 
-service                                         | requires                | produces
----                                             | ---                     | ---
-stanford/vassar.ner_2.0.0.xml                   | jsonld#lif, Token       | jsonld#lif, DPLO &dagger;
-stanford/vassar.ner_2.1.0.xml                   | jsonld#lif, Token       | jsonld#lif, DPLO
-stanford/vassar.ner2_2.0.0.xml                  | jsonld#lif, Token       | jsonld#lif, DPLO
-stanford/brandeis.namedentityrecognizer.xml     | jsonld#lif, Token       | jsonld#lif, NamedEntity
-gate/gate.ner_2.2.0.xml                         | xml#gate, Token         | xml#gate, DPLO
-gate/gate.ner_2.3.0.xml                         | xml#gate, Token         | xml#gate, DPLO
-opennlp/opennlp.namedentityrecognizer.xml       | jsonld#lif, Token       | jsonld#lif, NamedEntity
-lingpipe/cmu.dictionaryNER_1.0.0.xml            | text, jsonld#lif        | jsonld#lif, NamedEntity
-lingpipe/vassar.ner_1.0.0.xml                   | jsonld#lif, Token       | jsonld#lif, NamedEntity
-dkpro/dkpro.stanford.namedentityrecognizer.xml  | jsonld#lif, NamedEntity | jsonld#lif, NamedEntity
-dkpro/dkpro.opennlp.namedentityrecognizer.xml   | jsonld#lif, NamedEntity | jsonld#lif, NamedEntity
-dbpedia/spotlight.xml                           | text, jsonld#lif        | jsonld#lif, NamedEntity
+service                           | requires             | produces
+---                               | ---                  | ---
+v stanford.ner_2.0.0	            | jsonld#lif, Token    | jsonld#lif, NamedEntity
+v stanford.ner_2.1.0-SNAPSHOT     | jsonld#lif, Token    | jsonld#lif, NamedEntity
+SelectableNamedEntityRecognizer   | jsonld#lif, Token, Token#pos | jsonld#lif, NamedEntity
+v stanford.ner2_2.1.0-SNAPSHOT    ||
+b stanfordnlp.namedentityrecognizer_2.0.4 | jsonld#lif, Token    | jsonld#lif, NamedEntity
+v gate.ner_2.2.0                          | xml#gate, Token      | xml#gate, DPLO&dagger;
+v gate.ner_2.3.0                          | xml#gate, Token      | xml#gate, DPLO
+b opennlp.namedentityrecognizer_2.0.3     | jsonld#lif, Token    | jsonld#lif, NamedEntity
+LingPipeNER                               | text, jsonld#lif     | jsonld#lif, NamedEntity
+LingpipeDictionaryBasedNER                | text, jsonld#lif     | jsonld#lif, NamedEntity
+v lingpipe.ner_1.1.1-SNAPSHOT             ||
+v lingpipe.dictionary_ner_1.1.1-SNAPSHOT  ||
+b uima.dkpro.stanfordnlp.namedentityrecognizer_0.0.1 | jsonld#lif, NamedEntity | jsonld#lif, NamedEntity
+b uima.dkpro.opennlp.namedentityrecognizer_0.0.1     | jsonld#lif, NamedEntity | jsonld#lif, NamedEntity
+DBpediaSpotlightAnnotator                            | text, jsonld#lif        | jsonld#lif, NamedEntity
 
 &dagger; DPLO is short for Date, Person, Location, Organization.
 
-For some services the metadata are not available on the API because they are not registered. The metadata for those two were accessed using [metadata.lsd](../metadata.lsd):
+For some services the metadata are not available on the API because they are not registered. The metadata for those were accessed using [metadata.lsd](../metadata.lsd):
 
 ```
 $ lsd metadata.lsd SelectableNamedEntityRecognizer
 $ lsd metadata.lsd DBpediaSpotlightAnnotator
+$ lsd metadata.lsd LingpipeNER
 $ lsd metadata.lsd LingpipeDictionaryBasedNER
 ```
 
-## Running the Named Entity Recognizers
+## Service behavior analysis
 
 We again create output using a [bash script](entities.sh), see the script for notes on what input was used.
 
-
-### Service behavior analysis
-
 Here are observations for the tested services as of January 25th 2018, service output is stored in the [output directory](output).
 
-stanford/vassar.ner_2.0.0.xml
+vassar stanford.ner_2.0.0
 
 - Service requires Tokens but this is not enforced
 - Service seems to require Token#pos as well, but this is not specified
@@ -159,20 +169,24 @@ stanford/vassar.ner_2.0.0.xml
 - New view has no identifier
 - On LIF input the `@context` attribute is lost
 
-stanford/vassar.ner_2.1.0.xml
+vassar stanford/ner_2.1.0-SNAPSHOT
 
 - Same as above, except that
 - `@context` attribute is not lost
 - When running on text or GATE input we get a proper error message in the output file but also an error written to the standard output
 
-stanford/vassar.ner2_2.0.0.xml
+SelectableNamedEntityRecognizer
 
-- Service requires Tokens but this is not enforced
-- Service seems to require Token#pos as well, but this is not specified (but unhelpful error is raised)
+- Service requires Tokens but error message does not say that
+- Service requires Token#pos, but error message does not say that
 - With Tokens and pos available a new view is created, but it is empty
 - Annotations in existing view all get metadata attribute (with value set to null)
 
-stanford/brandeis.namedentityrecognizer.xml
+vassar stanford.ner2_2.1.0-SNAPSHOT
+
+- Not tested yet
+
+brandeis stanfordnlp.namedentityrecognizer_2.0.4
 
 - Service requires LIF input, but tool runs on text input
 - Service requires Tokens, but runs and creates NamedEntity annotations without it
@@ -182,18 +196,18 @@ stanford/brandeis.namedentityrecognizer.xml
 - Annotations do not have a `category` attribute.
 - View metadata has no `namedEntityCategorySet`
 
-gate/gate.ner_2.2.0.xml
+vassar gate.ner_2.2.0
 
 - Service requires xml#gate but accepts text and LIF input
 - Service requires Tokens, but this is not enforced
 - Output has no `@language` attribute.
 - On GATE input with Tokens, pos and Sentences no new layer is created.
 
-gate/gate.ner_2.3.0.xml
+vassar gate.ner_2.3.0
 
 - Same as above
 
-opennlp/opennlp.namedentityrecognizer.xml
+brandeis opennlp.namedentityrecognizer_2.0.3
 
 - Service requires LIF, but when given text it does not reject it (but it does complain about missing tokens)
 - New view has no identifier
@@ -201,22 +215,29 @@ opennlp/opennlp.namedentityrecognizer.xml
 - Annotations do not have a `category` attribute.
 - View metadata has no `namedEntityCategorySet`
 
-lingpipe/cmu.dictionaryNER_1.0.0.xml
+LingPipeNER
 
-- View metadata has no type
-- Output has no `@language` attribute with text input.
-- View metadata has no `namedEntityCategorySet`
-
-lingpipe/vassar.ner_1.0.0.xml
-
-- Service requires LIF but accepts text
 - New view has no identifier
 - Output has no `@language` attribute with text input.
 - On LIF input the `@context` attribute is lost
 - Metadata type of view is ner:lingpipe-en-news-muc-6
 - Gives scores of -Infinity
 
-dkpro/dkpro.stanford.namedentityrecognizer.xml
+LingpipeDictionaryBasedNER
+
+- View metadata has no type
+- Output has no `@language` attribute with text input.
+- View metadata has no `namedEntityCategorySet`
+
+vassar lingpipe.ner_1.1.1-SNAPSHOT
+
+- Not tested yet
+
+vassar lingpipe.dictionary_ner_1.1.1-SNAPSHOT
+
+- Not tested yet
+
+brandeis uima.dkpro.stanfordnlp.namedentityrecognizer_0.0.1
 
 - Service requires LIF but accepts text
 - New view has no identifier
@@ -225,7 +246,7 @@ dkpro/dkpro.stanford.namedentityrecognizer.xml
 - Existing view in input is not in output
 - No named entities found
 
-dkpro/dkpro.opennlp.namedentityrecognizer.xml
+brandeis uima.dkpro.opennlp.namedentityrecognizer_0.0.1
 
 - Service requires LIF but accepts text
 - New view has no identifier
@@ -234,6 +255,6 @@ dkpro/dkpro.opennlp.namedentityrecognizer.xml
 - Existing view in input is not in output
 - New view has wrong metadata (Token#pos)
 
-dbpedia/spotlight.xml
+DBpediaSpotlightAnnotator
 
 - No results created for LIF and text input, raise error "Received invalid response from DBpedia Spotlight API."

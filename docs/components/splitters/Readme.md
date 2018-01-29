@@ -1,26 +1,27 @@
 # Sentence Splitters
 
-Consistency checking on all splitters used on http://galaxy.lappsgrid.org/ and http://jetstream.lappsgrid.org/. The first section below has the final observations on all splitters, subsequent sections go into the process followed to get there (including many notes to self, probably in way to much detail, this will be cleaned up).
+Consistency checking on all splitters used on http://galaxy.lappsgrid.org/ and http://jetstream.lappsgrid.org/. The first section below has the final observations on all splitters, subsequent sections go into the process followed to get there.
 
 
 ## Summary of Observations
 
-The Galaxy servers listed above use nine unique sentence splitters on the Brandeis and Vassar nodes of the grid. Below is a table with observations on all nine splitter services plus one that was added after the first round of observations (lingpipe.splitter_1.1.1-SNAPSHOT).
+The Galaxy servers listed above use nine unique sentence splitters on the Brandeis and Vassar nodes of the grid. Below is a table with observations on all nine splitter services plus one that was added after the first round of observations (lingpipe.splitter_1.1.1-SNAPSHOT). The `b` or `v` in the service column in the table below indicates whether the service runs on the Brandeis or Vassar server. The absence of this marker indicates that we run the service bypassing the service manager.
 
-service                                         | requires    | produces  | other
----                                             | ---         | ---       | ---
-vassar stanford.splitter_2.0.0                  | 1           | 2         | 3, 4, 5
-vassar stanford.splitter_2.1.0-SNAPSHOT         | 6           | &check;   | 3, 5, 7<sup>&dagger;</sup>
-brandeis stanfordnlp.splitter_2.0.4             | &check;     | &check;   | 3, 8
-vassar gate.splitter_2.2.0                      | 9, 10       | &check;   | 3, 11, 12
-vassar gate.splitter_2.3.0                      | 9, 10       | &check;   | 3, 11, 12
-brandeis opennlp.splitter_2.0.3                 | 13          | &check;   | 3, 8
-vassar LingpipeSentenceSplitter                 | &check;     | &check;   | 3, 4, 14
-vassar lingpipe.splitter_1.1.1-SNAPSHOT         | 17          | 18        | 11
-brandeis uima.dkpro.stanfordnlp.splitter_0.0.1  | 15          | 16        | 3, 8, 11, 12
-brandeis uima.dkpro.opennlp.splitter_0.0.1      | 15          | 16        | 3, 8, 11, 12
+service                                   | requires    | produces  | other
+---                                       | ---         | ---       | ---
+v stanford.splitter_2.0.0                 | 1           | 2         | 3, 4, 5
+v stanford.splitter_2.1.0-SNAPSHOT        | 6           | &check;   | 3, 5, 7&dagger;
+b stanfordnlp.splitter_2.0.4              | &check;     | &check;   | 3, 8
+v gate.splitter_2.2.0                     | 9, 10       | &check;   | 3, 11, 12
+v gate.splitter_2.3.0                     | 9, 10       | &check;   | 3, 11, 12
+b opennlp.splitter_2.0.3                  | 13          | &check;   | 3, 8
+&Dagger;LingpipeSentenceSplitter          | &check;     | &check;   | 3, 4, 14
+v lingpipe.splitter_1.1.1-SNAPSHOT        | 17          | 18        | 11
+b uima.dkpro.stanfordnlp.splitter_0.0.1   | 15          | 16        | 3, 8, 11, 12
+b uima.dkpro.opennlp.splitter_0.0.1       | 15          | 16        | 3, 8, 11, 12
 
-<sup>&dagger;</sup> This issue was fixed in a more recent release of the snapshot.
+&dagger; This issue was fixed in a more recent release of the snapshot.<br/>
+&Dagger;  http://grid.anc.org:9080/LingpipeServices/1.0.0-SNAPSHOT/services/LingpipeSentenceSplitter
 
 The columns are to be interpreted as follows:
 
@@ -137,7 +138,7 @@ Then the tool config section:
 
 Note how the item in the tool menu for the Vassar sentence splitter is out of sync with the tool config and that the same is the case for the gate splitter. No idea what the problem is, in both cases the xml file has the right version in its name.
 
-And here is the table. Services marked with ** do not need to be checked because we will check those from http://galaxy.lappsgrid.org/.
+And here is the table. Services marked with ** do not need to be checked because those were also accessed http://galaxy.lappsgrid.org/.
 
 service name                          | server   | service identifier
 --------------------------------------|----------|-------------------
@@ -148,8 +149,6 @@ OpenNLP Splitter                      | brandeis | opennlp.splitter_2.0.3 **
 Lingpipe SentenceSplitter v1.0.0      | vassar   | LingpipeSentenceSplitter **
 DKPro Core Stanford Splitter v1.7.0   | brandeis | uima.dkpro.stanfordnlp.splitter_0.0.1 **
 DKPro Core OpenNLP Splitter v1.7.0    | brandeis | uima.dkpro.opennlp.splitter_0.0.1 **
-
-Lingpipe has the same version in the path as the one on http://galaxy.lappsgrid.org/
 
 So to be tested are:
 
@@ -174,140 +173,7 @@ Using
 
 - http://api.lappsgrid.org/services/brandeis
 - http://api.lappsgrid.org/services/vassar
-
-Declared metadata are as follows:
-
-Stanford SentenceSplitter v2.0.0 - vassar - stanford.splitter_2.0.0
-
-```
-http://api.lappsgrid.org/metadata?id=anc:stanford.splitter_2.0.0
-
-Requires
-- http://vocab.lappsgrid.org/ns/media/text
-- http://vocab.lappsgrid.org/ns/media/json
-- jsonld
-
-Produces
-- http://vocab.lappsgrid.org/ns/media/jsonld#lif
-- http://vocab.lappsgrid.org/Sentence
-- http://vocab.lappsgrid.org/Token
-```
-
-Stanford SentenceSplitter v2.0.0 (jetstream) - vassar - stanford.splitter_2.1.0-SNAPSHOT
-
-```
-http://api.lappsgrid.org/metadata?id=anc:stanford.splitter_2.1.0-SNAPSHOT
-
-Requires
-- http://vocab.lappsgrid.org/ns/media/text
-- http://vocab.lappsgrid.org/ns/media/jsonld#lif
-- http://vocab.lappsgrid.org/ns/media/json
-
-Produces
-- http://vocab.lappsgrid.org/ns/media/jsonld#lif
-- http://vocab.lappsgrid.org/Sentence
-```
-
-Stanford Splitter - brandeis - stanfordnlp.splitter_2.0.4
-
-```
-http://api.lappsgrid.org/metadata?id=brandeis_eldrad_grid_1:stanfordnlp.splitter_2.0.4
-
-Requires
-- http://vocab.lappsgrid.org/ns/media/text
-- http://vocab.lappsgrid.org/ns/media/jsonld#lif
-
-Produces
-- http://vocab.lappsgrid.org/ns/media/jsonld#lif
-- http://vocab.lappsgrid.org/Sentence
-```
-
-GATE SentenceSplitter v2.2.0 - vassar - gate.splitter_2.2.0
-
-```
-http://api.lappsgrid.org/metadata?id=anc:gate.splitter_2.2.0
-
-Requires
-- http://vocab.lappsgrid.org/ns/media/xml#gate
-- http://vocab.lappsgrid.org/Token
-
-Produces
-- http://vocab.lappsgrid.org/ns/media/xml#gate
-- http://vocab.lappsgrid.org/Sentence
-```
-
-GATE SentenceSplitter v2.2.0 (jetstream) - vassar - gate.splitter_2.3.0
-
-```
-http://api.lappsgrid.org/metadata?id=anc:gate.splitter_2.3.0
-
-Requires
-- http://vocab.lappsgrid.org/ns/media/xml#gate
-- http://vocab.lappsgrid.org/Token
-
-Produces
-- http://vocab.lappsgrid.org/ns/media/xml#gate
-- http://vocab.lappsgrid.org/Sentence
-```
-
-OpenNLP Splitter - brandeis - opennlp.splitter_2.0.3
-
-```
-http://api.lappsgrid.org/metadata?id=brandeis_eldrad_grid_1:opennlp.splitter_2.0.3
-
-Requires
-- http://vocab.lappsgrid.org/ns/media/jsonld#lif
-
-Produces
-- http://vocab.lappsgrid.org/ns/media/jsonld#lif
-- http://vocab.lappsgrid.org/Sentence
-```
-
-Lingpipe SentenceSplitter v1.0.0 - vassar - LingpipeSentenceSplitter
-
-```
-Note that the following is weird because the URL says lingpipe.splitter_1.1.0 instead
-of LingpipeSentenceSplitter.
-
-http://api.lappsgrid.org/metadata?id=anc:lingpipe.splitter_1.1.0
-Requires
-- http://vocab.lappsgrid.org/ns/media/text
-- http://vocab.lappsgrid.org/ns/media/jsonld#lif
-
-Produces
-- http://vocab.lappsgrid.org/ns/media/jsonld#lif
--	http://vocab.lappsgrid.org/Sentence
-```
-
-DKPro Core Stanford Splitter v1.7.0 - brandeis - uima.dkpro.stanfordnlp.splitter_0.0.1
-
-```
-http://api.lappsgrid.org/metadata?id=brandeis_eldrad_grid_1:uima.dkpro.stanfordnlp.splitter_0.0.1
-
-Requires
-- http://vocab.lappsgrid.org/ns/media/jsonld#lif
-- http://vocab.lappsgrid.org/Sentence
-
-Produces
-- http://vocab.lappsgrid.org/ns/media/jsonld#lif
-- http://vocab.lappsgrid.org/Sentence
-```
-
-DKPro Core OpenNLP Splitter v1.7.0 - brandeis - uima.dkpro.opennlp.splitter_0.0.1
-
-```
-http://api.lappsgrid.org/metadata?id=brandeis_eldrad_grid_1:gate.opennlp.splitter_0.0.1
-
-Requires
-- http://vocab.lappsgrid.org/ns/media/jsonld#lif
-- http://vocab.lappsgrid.org/Sentence
-
-Produces
-- http://vocab.lappsgrid.org/ns/media/jsonld#lif
-- http://vocab.lappsgrid.org/Sentence
-```
-
-Let's make this more compact (the `b` or `v` in the service column in the table below indicates whether the service runs on the Brandeis or Vassar server):
+- The [metadata script](../metadata.lsd) for LingpipeSentenceSplitter since it is not registered at the service managers.
 
 service                                 | requires                | produces
 --------                                |----------               |---------
@@ -317,71 +183,34 @@ b stanfordnlp.splitter_2.0.4            | text, jsonld#lif        | jsonld#lif, 
 v gate.splitter_2.2.0                   | xml#gate, Token         | xml#gate, Sentence
 v gate.splitter_2.3.0                   | xml#gate, Token         | xml#gate, Sentence
 b opennlp.splitter_2.0.3                | jsonld#lif              | jsonld#lif, Sentence
-v LingpipeSentenceSplitter              | text, jsonld#lif        | jsonld#lif, Sentence
+LingpipeSentenceSplitter                | text, jsonld#lif        | jsonld#lif, Sentence
 v lingpipe.splitter_1.1.1-SNAPSHOT      | text, jsonld#lapps      | jsonld#lapps, Sentence
 b uima.dkpro.stanfordnlp.splitter_0.0.1 | jsonld#lif, Sentence    | jsonld#lif, Sentence
 b uima.dkpro.opennlp.splitter_0.0.1     | jsonld#lif, Sentence    | jsonld#lif, Sentence
 
 
+## Service behavior analysis
 
-## Running the Splitters
-
-### Running splitters using Galaxy
-
-Say we run services from Galaxy and we first feed it the [karen-flies.txt](input/karen-flies.txt) sample file, which has the following content:
-
-```
-{
-    "discriminator": "http://vocab.lappsgrid.org/ns/media/text",
-    "payload": "Karen flies to New York and she is happy about that.\n"
-}
-```
-
-Uploading this file to the Galaxy server allows you to specify what kind of file this is or you can let Galaxy make a guess. For Galaxy a number of file types have been defined with mappings to extensions: Text (.txt), LifText (.liftxt), Gate (.gate), Lif (.lif), Lapps (.lapps) and LappsJson (.json). Note that these types are separate from the input type in the discriminator.
-
-When uploading the sample file Galaxy guesses LifText, which is unfortunate because with that guess most of the splitters above will not run. This is because of the Galaxy XML wrappers for the services which list a number of parameters that specify the input type (note the 'v' and 'b' prefixes, referring to the Vassar and Brandeis servers respectively):
-
-service                                 | input specification in XML wrapper
---------                                | ---
-v stanford.splitter_2.0.0               | format="lif" label="input" name="input" type="data"
-v stanford.splitter_2.1.0-SNAPSHOT      | format="lif" label="input" name="input" type="data"
-b stanfordnlp.splitter_2.0.4            | format="lif" label="input" name="input" type="data"
-v gate.splitter_2.2.0                   | format='gate' name='input' type='data'
-v gate.splitter_2.3.0                   | format='gate' name='input' type='data'
-b opennlp.splitter_2.0.3                | format="lif" label="input" name="input" type="data"
-v LingpipeSentenceSplitter              | format="lif" label="input" name="input" type="data"
-b uima.dkpro.stanfordnlp.splitter_0.0.1 | format="text" label="input" name="input" type="data"
-b uima.dkpro.opennlp.splitter_0.0.1     | format="text" label="input" name="input" type="data"
-
-Only the two DKPro splitters are willing to work with input of type LifText, the other all require Lif or Gate (although the Gate splitter will work with Lif because there is an automatic converter). If we want to do these tests in Galaxy then we need to upload the sample file as a Lif file.
-
-Note: the format listed appears to be either the extension or the type in lower case. If it is the extension then the format for the DKPro splitters may be wrong because there is no text extension.
-
-In any case, it is better (and faster) to separate using Galaxy from testing the behavior of services. Below we use command line invocation using LSD.
-
-
-### Running splitters using LSD
-
-We run the splitters exactly the same way as specified in the GalaxyMod XML wrappers. More specifically we have the following invocation (all to be run from the `tools` directory):
+We run the splitters exactly the same way as specified in the GalaxyMod XML wrappers in https://github.com/lappsgrid-incubator/GalaxyMods. More specifically we have the following invocations (all to be run from the `tools` directory):
 
 ```
 lsd common/invoke_vassar.lsd stanford.splitter_2.0.0 INPUT OUTPUT
 lsd common/invoke_vassar.lsd stanford.splitter_2.1.0-SNAPSHOT INPUT OUTPUT
 lsd common/invoke_brandeis.lsd stanfordnlp.splitter_2.0.4 INPUT OUTPUT
-lsd gate/invoke.lsd gate.splitter_2.2.0 INPUT OUTPUT
-lsd gate/invoke.lsd gate.splitter_2.3.0 INPUT OUTPUT
 lsd common/invoke_brandeis.lsd opennlp.splitter_2.0.3 INPUT OUTPUT
-lsd lingpipe/invoke.lsd LingpipeSentenceSplitter INPUT OUTPUT
 lsd common/invoke_brandeis.lsd uima.dkpro.stanfordnlp.splitter_0.0.1 INPUT OUTPUT
 lsd common/invoke_brandeis.lsd uima.dkpro.opennlp.splitter_0.0.1 INPUT OUTPUT
+lsd gate/invoke.lsd gate.splitter_2.2.0 INPUT OUTPUT
+lsd gate/invoke.lsd gate.splitter_2.3.0 INPUT OUTPUT
+lsd lingpipe/invoke.lsd LingpipeSentenceSplitter INPUT OUTPUT
 ```
 
-In addition, we may run the JSON pretty print from `/common/pretty_print.lsd` and converters via `converters/invoke.lsd` as needed (for the GATE services in the case of sentence splitters). We run the services on four different versions of the input file:
+In addition, we may run the JSON pretty print from `/common/pretty_print.lsd` and converters via `converters/invoke.lsd` as needed. We run the services on four different versions of the input file:
 
-- [karen-flies.txt](input/karen-flies.txt)
-- [karen-flies.lif](input/karen-flies.lif)
-- [karen-flies.gate](input/karen-flies.gate)
-- [karen-flies.ner.lif](input/karen-flies.ner.lif)
+- [karen-flies.txt](../input/karen-flies.txt)
+- [karen-flies.lif](../input/karen-flies.lif)
+- [karen-flies.gate](../input/karen-flies.gate)
+- [karen-flies.ner.lif](../input/karen-flies.ner.lif)
 
 The idea of the first three is that the service should either accept the input or fail gracefully with an error message. For the fourth, we use an unrelated annotation and test whether the service keeps it.
 
@@ -433,9 +262,6 @@ And this is what we expect when the input is not as required:
     "payload": "Unsupported input type: http://vocab.lappsgrid.org/ns/media/xml#gate"
 }
 ```
-
-
-### Service behavior analysis
 
 Here are observations for all the splitters as of January 23rd 2018. All output is in [output](output).
 
@@ -490,7 +316,7 @@ brandeis opennlp.splitter_2.0.3
 - There is no `label` attribute in the annotations
 - Preserves the existing layer correctly
 
-vassar LingpipeSentenceSplitter
+LingpipeSentenceSplitter
 
 - New view has no identifier
 - View metadata has type `tokenizer:lingpipe-indo-european-tokenizer`

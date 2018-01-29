@@ -7,16 +7,9 @@
 #  $ ./entities.sh all|lingpipe|gate|dbpedia|brandeis|vassar|stanford
 
 
-# This is where all the invocation scripts live that are used by the Galaxy
-# XML wrappers.
-TOOLS=/Users/marc/Documents/git/lapps/lappsgrid-incubator/GalaxyMods/tools
-TOOLS=/Users/marc/Desktop/lapps/code/lappsgrid-incubator/GalaxyMods/tools
-
-# Location of the LSD script.
-LSD=/Users/marc/bin/lsd
-
-# Base name of input files
-INPUT=../input/karen-flies
+# settings and utilities used by script
+source ../splitters/settings.sh
+source ../splitters/utils.sh
 
 # Named entity dictionary (used by one of the services)
 DICTIONARY=dictionary.txt
@@ -30,26 +23,6 @@ DICTIONARY=dictionary.txt
 #
 # where INVOKER refers to the way the script was invoked, INFORMAT refers to
 # the input format and OUTFORMAT to the output format.
-
-
-parse_spec () {
-    # Function that allows you to write more compact invocations. It takes a
-    # specification like txt:nil, lif:sent or lif:tok.pos where we have a format
-    # and a list of types and then use this to automatically generate the names
-    # of the input and output files. The specification characterizes the input
-    # so for the output file an extension will still need to be added by the
-    # calling code.
-    format_and_types=(${1//:/ })
-    local format=${format_and_types[0]}
-    local types=${format_and_types[1]}
-    if [ $types = 'nil' ]; then
-	in="$INPUT.$format"
-	out=output/$invoker-$service-$format
-    else
-	in="$INPUT.$types.$format"
-	out=output/$invoker-$service-$format-$types
-    fi
-}
 
 
 # LingPipe NER
@@ -106,70 +79,37 @@ fi
 
 # GATE NER
 
-if [ $1 = gate ] || [ $1 = all ]; then
-
+if [ $1 = gate ] || [ $1 = all ]; 
+then
     invoker=gate
     services=( gate.ner_2.2.0 gate.ner_2.3.0 )
-
-    for service in "${services[@]}"
-    do
-	echo "gate/invoke.lsd $service"
-	for spec in txt:nil lif:nil lif:tok.sent gate:nil gate:tok gate:tok.sent
-	do
-	    parse_spec $spec
-	    echo "   $in"
-	    $LSD $TOOLS/gate/invoke.lsd $service $in $out.gate
-	    $LSD $TOOLS/converters/invoke.lsd convert.gate2json_2.0.0 $out.gate true $out.lif
-	done
-    done
-
+    specs=( txt:nil lif:nil lif:tok.sent gate:nil gate:tok gate:tok.sent )
+    run_gate_services
 fi
 
 
 # Stanford and DKPRO NER via Brandeis server
 
-if [ $1 = brandeis ] || [ $1 = all ]; then
-
+if [ $1 = brandeis ] || [ $1 = all ]; 
+then
     invoker=brandeis
     services=( stanfordnlp.namedentityrecognizer_2.0.4
 	       opennlp.namedentityrecognizer_2.0.3
 	       uima.dkpro.stanfordnlp.namedentityrecognizer_0.0.1
 	       uima.dkpro.opennlp.namedentityrecognizer_0.0.1 )
-    
-    for service in "${services[@]}"
-    do
-	echo "common/invoke_brandeis.lsd $service"
-	for spec in txt:nil lif:nil lif:tok gate:nil
-	do
-	    parse_spec $spec
-	    echo "   $in"
-	    $LSD $TOOLS/common/invoke_brandeis.lsd $service $in tmp
-	    $LSD $TOOLS/common/pretty_print.lsd tmp $out.lif
-	done
-    done
-
+    specs=( txt:nil lif:nil lif:tok gate:nil )
+    run_regular_services
 fi
 
 
 # Standford NER via Vassar
 
-if [ $1 = vassar ] || [ $1 = all ]; then
-
+if [ $1 = vassar ] || [ $1 = all ];
+then
     invoker=vassar
     services=( stanford.ner_2.0.0 stanford.ner_2.1.0-SNAPSHOT )
-    
-    for service in "${services[@]}"
-    do
-	echo "common/invoke_vassar.lsd $service"
-	for spec in txt:nil lif:nil lif:tok lif:tok.pos.sent gate:nil
-	do
-	    parse_spec $spec
-	    echo "   $in"
-	    $LSD $TOOLS/common/invoke_vassar.lsd $service $in tmp-$spec
-	    $LSD $TOOLS/common/pretty_print.lsd tmp-$spec $out.lif
-	done
-    done
-
+    specs=( txt:nil lif:nil lif:tok lif:tok.pos.sent gate:nil )
+    run_regular_services
 fi
 
 
@@ -193,4 +133,4 @@ if [ $1 = stanford ] || [ $1 = all ]; then
 fi
 
 
-rm -f tmp
+rm -f tmp-*

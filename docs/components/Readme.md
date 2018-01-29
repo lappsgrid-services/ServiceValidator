@@ -1,8 +1,8 @@
 # Checking services
 
-This directory contains the result of various checks on a series of services. Much of it is done on several versions of a small [sample file](input/karen-flies.txt) with minimal content that still contains enough richness so services should actually produce some output. The services used are the ones used at the LAPPS/Galaxy pages at http://galaxy.lappsgrid.org/ and http://jetstream.lappsgrid.org.
+This directory contains the result of various checks on a series of services. Much of it is done on several versions of a small [sample file](input/karen-flies.txt) with minimal content that still contains enough richness so services should actually produce some output. The services tested here typically are the ones used at the LAPPS/Galaxy pages at http://galaxy.lappsgrid.org/ and http://jetstream.lappsgrid.org.
 
-The following services were tested:
+The following types of services were tested:
 
 - [Sentence Splitters](splitters)
 - [Tokenizers](tokenizers)
@@ -24,24 +24,49 @@ What the services were tested for:
 
 - Services should not remove existing layers.
 
-<!--
-## Notes on the vocabulary
+How services are identified:
 
-On the view's type metadata attribute
-- The vocab has this to say about the type: "The value type of the annotations produced."
-- In some cases the type is the same as in the description field of the service metadata
+- Most services are accessed via the Vassar or Brandeis service managers. For these, we provide the server name (brandeis or vassar, sometimes abbreviated to the first letter) followed by the service identifier. Notice that the service identifier is not the complete service identifier (which is a complete URL) because on both servers a prefix is added (in addition to the server itself): `anc:` on the Vassar server and `brandeis_eldrad_grid_1:` on the Brandeis server.
 
-On the label attribute
+- For other services, that is, those that are not accessed via a service manager, we give the full path to the service.
+
+
+### Some notes on the vocabulary
+
+On the `type` attribute in the view metadata
+
+- The vocab has this to say about the type: "The value type of the annotations produced." It is not clear to me what this means in case it is different from what is in the `@type` attribute of annoations (and the `contains` attributes in the metadata).
+- In some cases the type is the same as in the description field of the service metadata.
+- We need a theory on what we do with this types, an initial proposal is:
+  - These types are all discriminators, possibly under ns/tools or ns/components.
+  - They refer to the kinds of tools instead of the kinds of annotations.
+  - The splitter page would have all kinds of tools that can be described on that page.
+
+On the `label` attribute
+
 - This is in the json schema at the top level as an optional feature, it is intended for visualization tools
-- But this property is defined on Relation (required), which is different from the label property used at the top level)
--
+- But this property is also defined on Relation as a required property, which is somewhat confusing.
 
-Difference between jsonld#lapps and jsonld#lif
+On the `lapps` and `lif` discriminators
 
-On the DependencyStructure type
-- There is no `root` property, but maybe it should have one
+- What is the exact difference between jsonld#lapps and jsonld#lif. My interpretation is that the former is any data object passed to a service whereas the latter indicates a lapps object with LIF in its payload.
+
+On the `DependencyStructure` type
+
+- There is no `root` property, but maybe it should have one since we have one on `PhraseStructure`.
 
 What does a POS tagger produce?
-- Say they create there own tokens, should the contains say Token#pos or should it also have Token?
+
+- Many POS taggers create their own tokens, should the `contains` attribute just say `Token#pos` or should it also have `Token`? It now just has `Token#pos` and `Token` is implied.
+
+What about the `dependsOn` property in the view meta data?
+
+- This was discussed a while back, but without any resolution. Some POS taggers require an existing token view, but from the results it is not clear explicitly which one that was.
+
+<!--
+
+Things to test
+
+- metadata say what version of tool is wrapped
 
 -->

@@ -12,7 +12,12 @@
         "views": [
             {
                 "metadata": {
-                    
+                    "contains": {
+                        "http://vocab.lappsgrid.org/NamedEntity": {
+                            "producer": "org.anc.lapps.stanford.NamedEntityRecognizer:2.1.0-SNAPSHOT",
+                            "type": "ner:stanford"
+                        }
+                    }
                 },
                 "annotations": [
                     

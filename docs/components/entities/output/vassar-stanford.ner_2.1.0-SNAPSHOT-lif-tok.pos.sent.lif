@@ -166,7 +166,7 @@
             {
                 "metadata": {
                     "contains": {
-                        "http://vocab.lappsgrid.org/Location": {
+                        "http://vocab.lappsgrid.org/NamedEntity": {
                             "producer": "org.anc.lapps.stanford.NamedEntityRecognizer:2.1.0-SNAPSHOT",
                             "type": "ner:stanford"
                         }
@@ -177,7 +177,7 @@
                         "id": "ne0",
                         "start": 15,
                         "end": 18,
-                        "@type": "http://vocab.lappsgrid.org/Location",
+                        "@type": "http://vocab.lappsgrid.org/NamedEntity",
                         "label": "LOCATION",
                         "features": {
                             "category": "LOCATION",
@@ -189,7 +189,7 @@
                         "id": "ne1",
                         "start": 19,
                         "end": 23,
-                        "@type": "http://vocab.lappsgrid.org/Location",
+                        "@type": "http://vocab.lappsgrid.org/NamedEntity",
                         "label": "LOCATION",
                         "features": {
                             "category": "LOCATION",

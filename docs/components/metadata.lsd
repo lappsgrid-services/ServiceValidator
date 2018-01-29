@@ -1,5 +1,7 @@
 #!/usr/bin/env lsd
 
+import groovy.json.JsonOutput;
+
 server = [ url: 'http://vassar.lappsgrid.org/invoker',
            username: 'tester',
            password: 'tester' ];
@@ -15,6 +17,12 @@ if (service == 'SelectableNamedEntityRecognizer') {
 } else if (service == 'DBpediaSpotlightAnnotator') {
     url = "http://grid.anc.org:9080/DBpediaSpotlightServices/1.0.0/services/DBpediaSpotlightAnnotator";
     client = new ServiceClient(url, null, null);
+} else if (service == 'LingpipeSentenceSplitter') {
+    url = "http://grid.anc.org:9080/LingpipeServices/1.1.0/services/LingpipeSentenceSplitter"
+    client = new ServiceClient(url, null, null);
+} else if (service == 'LingpipeNER') {
+    url = "http://grid.anc.org:9080/LingpipeServices/1.1.0/services/LingpipeNER"
+    client = new ServiceClient(url, null, null);
 } else if (service == 'LingpipeDictionaryBasedNER') {
     url = "http://grid.anc.org:9080/LingpipeServices/1.1.0/services/LingpipeDictionaryBasedNER"
     client = new ServiceClient(url, null, null);
@@ -24,5 +32,6 @@ if (service == 'SelectableNamedEntityRecognizer') {
 }
 
 String meta = client.getMetadata();
+String pretty = JsonOutput.prettyPrint(meta)
 //System.out.println('\n' + url + '\n');
-System.out.println(meta);
+System.out.println(pretty);
