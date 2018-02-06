@@ -9,6 +9,7 @@
     },
     "views": [
       {
+        "id": "v1",
         "metadata": {
           "contains": {
             "http://vocab.lappsgrid.org/Sentence": {
