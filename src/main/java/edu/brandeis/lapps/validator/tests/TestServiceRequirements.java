@@ -2,7 +2,7 @@
  * 
  */
 
-package edu.brandeis.lapps.validator;
+package edu.brandeis.lapps.validator.tests;
 
 
 public class TestServiceRequirements {

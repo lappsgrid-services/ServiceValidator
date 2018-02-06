@@ -4,6 +4,9 @@
 
 package edu.brandeis.lapps.validator;
 
+import edu.brandeis.lapps.validator.tests.TestJsonSchema;
+import edu.brandeis.lapps.validator.tests.TestServiceRequirements;
+
 
 public class ServiceTest {
 
