@@ -1,3 +1,7 @@
+/*
+ * Probably all depricated now since all code has been copied to other classes.
+ */
+
 package edu.brandeis.lapps.validator;
 
 import java.io.BufferedReader;
