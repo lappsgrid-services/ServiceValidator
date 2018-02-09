@@ -10,7 +10,9 @@ import java.io.InputStreamReader;
 
 public class LappsAPI {
 
-	private static final String SERVICES_URL = "http://api.lappsgrid.org/services";
+	public static final String API_URL = "http://api.lappsgrid.org";
+	public static final String SERVICES_URL = API_URL + "/services";
+	public static final String SOAP_PROXY_URL = API_URL + "/soap-proxy";
 	
 	public static String getBrandeisServices() {
 		return getServices("brandeis");

@@ -1,5 +1,6 @@
 package edu.brandeis.lapps.validator;
 
+import edu.brandeis.lapps.validator.tests.ServiceTest;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -22,6 +23,7 @@ public class ServiceValidator {
 		for (int i = 1; i < services.size() && i < 3; i++) {
 			Service service = new Service((JSONObject) services.get(i));
 			System.out.println("\n" + service);
+			//service.printMetadata();
 			validate(service);
 		}
 	}
@@ -49,24 +51,26 @@ public class ServiceValidator {
 				runTests(service, lif, report);
 				report.prettyPrint();
 			}
-		} catch (NoSuchMethodException | IllegalAccessException 
-				| IllegalArgumentException | InvocationTargetException ex) {
-			Logger.getLogger(ServiceValidator.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (IOException ex) {
+			Logger.getLogger(ServiceValidator.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (InstantiationException ex) {
+			Logger.getLogger(ServiceValidator.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (IllegalAccessException ex) {
 			Logger.getLogger(ServiceValidator.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 	
-	public static void runTests(Service service, String lif, Report report)
-			throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public static void runTests(Service service, String lif, Report report) 
+			throws InstantiationException, IllegalAccessException {
 		
-		Class[] args = new Class[3];
-		args[0] = Service.class;
-		args[1] = String.class;
-		args[2] = Report.class;
-		for (Class c : ServiceTest.subclasses()) {
-			Method m = c.getMethod("run", args);
-			m.invoke(null, service, lif, report);
+		for (Class theClass : ServiceTest.subclasses()) {
+			ServiceTest test;
+			try {
+				test = (ServiceTest) theClass.newInstance();
+				test.run(service, lif, report);
+			} catch (InstantiationException ex) {
+				Logger.getLogger(ServiceValidator.class.getName()).log(Level.SEVERE, null, ex);
+			}
 		}
 	}
 	

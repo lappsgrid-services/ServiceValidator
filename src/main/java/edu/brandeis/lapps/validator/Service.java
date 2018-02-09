@@ -23,9 +23,9 @@ import org.json.simple.parser.ParseException;
 
 public class Service {
 	
-	JSONObject serviceSpec, metadataObj;
-	JSONArray requires, produces;
-	String id, name, metadata;
+	public String id, name, metadata;
+	public JSONObject serviceSpec, metadataObj, response;
+	public JSONArray requires, produces;
 
 	/**
 	 * Create a Service object that contains the service metadata and that allows
@@ -56,6 +56,10 @@ public class Service {
 				this.requires.toString(), this.produces.toString());
 		System.out.println(main + meta);
 	}
+
+	public void printMetadata() {
+		System.out.println(this.metadata);
+	}
 	
 	private void parseMetadata() {
 		JSONParser parser = new JSONParser();
@@ -75,34 +79,48 @@ public class Service {
 			Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-	
-	public String execute(String lif) throws IOException {
-        HttpClient httpclient = HttpClients.createDefault();
-        HttpPost httppost = new HttpPost("http://api.lappsgrid.org/soap-proxy?id=" + this.id);
-        httppost.setHeader("Content-Type","text/plain");
 
-        // Request parameters and other properties.
-        List<NameValuePair> params = new ArrayList<NameValuePair>(2);
-        params.add(new BasicNameValuePair("", lif));
-        //params.add(new BasicNameValuePair("id",serviceid));
-        httppost.setEntity(new StringEntity(lif));
+	/**
+	 * Execute the service on a JSON string with discriminator and payload.
+	 * 
+	 * @param input
+	 * 
+	 * @return
+	 * Returns a String but we really run this for the side effect of putting
+	 * a JSONObject instance in the Service's response instance variable.
+	 * 
+	 * @throws IOException 
+	 */
+	public String execute(String input) throws IOException {
 
-        //Execute and get the response.
-        HttpResponse response = httpclient.execute(httppost);
-        HttpEntity entity = response.getEntity();
+		HttpClient httpclient = HttpClients.createDefault();
+		HttpPost httppost = new HttpPost(LappsAPI.SOAP_PROXY_URL + "?id=" + this.id);
+		httppost.setHeader("Content-Type","text/plain");
 
-        if (entity != null) {
-            InputStream instream = entity.getContent();
+		// Request parameters and other properties.
+		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
+		params.add(new BasicNameValuePair("", input));
+		//params.add(new BasicNameValuePair("id",serviceid));
+		httppost.setEntity(new StringEntity(input));
+
+		// Execute and get the response.
+		HttpResponse httpResponse = httpclient.execute(httppost);
+		HttpEntity httpEntity = httpResponse.getEntity();
+
+		if (httpEntity != null) {
+            InputStream instream = httpEntity.getContent();
             try {
                 StringWriter writer = new StringWriter();
                 IOUtils.copy(instream, writer, "utf-8");
-                String theString = writer.toString();
-                return theString;
+				JSONParser parser = new JSONParser();
+				this.response = (JSONObject) parser.parse(writer.toString());
+			} catch (ParseException ex) {
+				Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 instream.close();
             }
         }
-        return "";
+		return this.response.toString();
 	}
 
 }
