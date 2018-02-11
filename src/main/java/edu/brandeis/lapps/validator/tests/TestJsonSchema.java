@@ -5,7 +5,8 @@ import edu.brandeis.lapps.validator.Service;
 
 public class TestJsonSchema extends ServiceTest {
 
-	public void run(Service service, String lif, Report report) {
+	@Override
+	public void run(Service service, String filename, Report report) {
 		announce(TestJsonSchema.class.getName());
 	}
 

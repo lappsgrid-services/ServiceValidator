@@ -1,9 +1,23 @@
 package edu.brandeis.lapps.validator;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class InputSelector {
+
+	// Keep all inputs in memory so we won't need to read them from disk for
+	// every service.
+	private static Map<String, String> INPUTS;
 
 	public static String getTestCase1() {
 		return "{\"discriminator\":\"http://vocab.lappsgrid.org/ns/media/text\",\"payload\":\"Lif test for metadata validator.\"}";
@@ -17,14 +31,56 @@ public class InputSelector {
 	 * Select the inputs that the service should run on.
 	 *
 	 * @param service
-	 * The Service for which input strings are selected.
+	 * The Service for which input strings are selected. The current version 
+	 * ignores the service and returns all tests.
 	 *
-	 * @return an ArrayList with string to be fed to the service
+	 * @return an ArrayList with strings to be fed to the service as input.
 	 */
-	public static ArrayList<String> select(Service service) {
-		ArrayList<String> inputs = new ArrayList();
-		// TODO: just a placeholder for now
-		inputs.add(getTestCase2());
+	public static ArrayList<String[]> select(Service service) {
+		ArrayList<String[]> inputs = new ArrayList<>();
+		for (String filename : INPUTS.keySet())
+			inputs.add(new String[]{filename, INPUTS.get(filename)});
 		return inputs;
 	}
+
+	public static void initiate() {
+		File[] files = getInputFiles();
+		INPUTS = new HashMap<>();
+		for (File file : files) {
+			try {
+				INPUTS.put(file.getName(), readFile(file.toString()));
+			} catch (IOException ex) {
+				Logger.getLogger(InputSelector.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+	}
+
+	public static void printInputs() {
+		for (String filename : INPUTS.keySet())
+			System.out.println(INPUTS.get(filename).length() + "\t" + filename);
+	}
+
+	private static File[] getInputFiles() {
+		File folder = new File("src/main/resources/input");
+		File[] files = folder.listFiles(new Filter());
+		return files;
+	}
+
+    private static String readFile(String filename) throws IOException {
+        byte[] bytes = Files.readAllBytes(Paths.get(filename));
+	        return new String(bytes, Charset.forName("UTF-8"));
+    }
+ 
+}
+
+
+class Filter implements FileFilter {
+
+	@Override
+    public boolean accept(File path) {
+        String filename = path.getName();
+		char[] chars = filename.toCharArray();
+		char lastChar = chars[chars.length - 1];
+		return filename.startsWith("karen-flies") && lastChar != '~';
+    }
 }

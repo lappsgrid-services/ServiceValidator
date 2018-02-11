@@ -6,7 +6,8 @@ import edu.brandeis.lapps.validator.Service;
 
 public class TestServiceRequirements extends ServiceTest {
 
-	public void run(Service service, String lif, Report report) {
+	@Override
+	public void run(Service service, String filename, Report report) {
 		announce(TestServiceRequirements.class.getName());
 	}
 
