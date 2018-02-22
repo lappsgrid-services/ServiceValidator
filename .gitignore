@@ -4,3 +4,7 @@
 *.iml
 *.ipr
 *.iws
+nbproject
+nbproject/private/
+build/
+/dist/
