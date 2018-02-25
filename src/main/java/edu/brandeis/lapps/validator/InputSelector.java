@@ -38,11 +38,29 @@ public class InputSelector {
 	 */
 	public static ArrayList<String[]> select(Service service) {
 		ArrayList<String[]> inputs = new ArrayList<>();
-		for (String filename : INPUTS.keySet())
-			inputs.add(new String[]{filename, INPUTS.get(filename)});
+		for (String filename : INPUTS.keySet()) {
+			inputs.add(new String[]{filename, INPUTS.get(filename)}); }
 		return inputs;
 	}
 
+	/**
+	 * Select and return all inputs available.
+	 *
+	 * @return an ArrayList with strings to be fed to the service as input.
+	 */
+	public static ArrayList<String[]> selectAll() {
+		ArrayList<String[]> inputs = new ArrayList<>();
+		for (String filename : INPUTS.keySet()) {
+			inputs.add(new String[]{filename, INPUTS.get(filename)}); }
+		return inputs;
+	}
+
+	/**
+	 * Initiate the input files.
+	 *
+	 * Reads all sample files that services run over and create the INPUTS
+	 * hash map which maps input file names to their contents.
+	 */
 	public static void initiate() {
 		File[] files = getInputFiles();
 		INPUTS = new HashMap<>();
@@ -55,12 +73,16 @@ public class InputSelector {
 		}
 	}
 
+	public static Map<String, String> getAllInputs() {
+		return INPUTS;
+	}
+
 	public static void printInputs() {
 		for (String filename : INPUTS.keySet())
 			System.out.println(INPUTS.get(filename).length() + "\t" + filename);
 	}
 
-	private static File[] getInputFiles() {
+	public static File[] getInputFiles() {
 		File folder = new File("src/main/resources/input");
 		File[] files = folder.listFiles(new Filter());
 		return files;

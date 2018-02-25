@@ -1,6 +1,6 @@
 package edu.brandeis.lapps.validator.tests;
 
-import edu.brandeis.lapps.validator.Report;
+import edu.brandeis.lapps.validator.ServiceReport;
 import edu.brandeis.lapps.validator.Service;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,7 +14,7 @@ public class TestFormat extends ServiceTest {
 		"Service accepts %s which is disallowed by the service input requirements";
 
 	@Override
-	public void run(Service service, String filename, Report report) {
+	public void run(Service service, String filename, ServiceReport report) {
 
 		String inputDiscriminator, outputDiscriminator, outputPayload;
 		String error = null;
@@ -35,21 +35,24 @@ public class TestFormat extends ServiceTest {
 			}
 		}
 		
-		System.out.println("   in  " + inputDiscriminator);
-		System.out.println("   out " + outputDiscriminator);
-		System.out.println("   pay " + outputPayload);
-
+		//dribble("Input discriminator = " + inputDiscriminator);
+		//dribble("Output discriminator = " + outputDiscriminator);
+		
 		if (service.requiredFormat.contains(inputDiscriminator)) {
+			//dribble("Required format contains input discriminator");
 			// If format includes the input discriminator, then we should either
 			// not get an error or an error that is not related to the input format
 			if (error != null && this.errorIsNotFormatError(inputDiscriminator, error))
 				report.add(filename, String.format(FORMAT_ERROR_STRING, inputDiscriminator));
 		} else {
+			//dribble("Required format does not contain input discriminator");
 			// We should get an error, but this error has to be of the right kind
-			if (error == null)
-				report.add(filename, String.format(FORMAT_ERROR_STRING, inputDiscriminator));
-			else if (this.errorIsFormatError(inputDiscriminator, error))
-				report.add(filename, String.format(FORMAT_ERROR_STRING, inputDiscriminator));
+			if (error == null) {
+				//dribble("No error found");
+				report.add(filename, String.format(FORMAT_ERROR_STRING, inputDiscriminator)); }
+			else if (this.errorIsNotFormatError(inputDiscriminator, error)) {
+				//dribble("Error is not format error");
+				report.add(filename, String.format(FORMAT_ERROR_STRING, inputDiscriminator)); }
 		}
 	}
 

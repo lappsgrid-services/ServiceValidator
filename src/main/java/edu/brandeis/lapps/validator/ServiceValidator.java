@@ -11,21 +11,41 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 
+/**
+ * Main class of the LAPPS Service Validator.
+ * 
+ * Running this class now does the following:
+ * 
+ * (1) it pings the Brandeis service manager and gets its list of services, and
+ * (2) it runs the available tests on just the first service found.
+ * 
+ * Output is written as a set of HTML files in the build/report directory, when
+ * you run this multiple times prior results will be overwritten.
+ */
 public class ServiceValidator {
 
 	private static JSONArray services; //a json array of lapps services
-
+	private static String reportDir;
+	
 	public static void main(String[] args) throws IOException {
+		reportDir = "build/report/";
 		getBrandeisServices();
 		InputSelector.initiate();
-		//InputSelector.printInputs();
+		TestSuiteReport tsReport = new TestSuiteReport(reportDir);
+		ArrayList<String[]> inputFiles = InputSelector.selectAll();
+		tsReport.writeInputFiles(inputFiles);
 		//for (int i = 0; i < servicesList.size(); i++) {
 		for (int i = 1; i < services.size() && i < 2; i++) {
 			Service service = new Service((JSONObject) services.get(i));
+			ServiceReport report = new ServiceReport(service, reportDir);
+			System.out.println(service.id);
+			validate(service, report);
+			tsReport.update(service, report);
 			System.out.println();
-			service.prettyPrint();
-			validate(service);
+			report.writeHTML();
 		}
+		tsReport.printObservations();
+		tsReport.finish();
 	}
 
 	public static void getBrandeisServices() {
@@ -48,15 +68,16 @@ public class ServiceValidator {
 		}
 	}
 
-	public static void validate(Service service) {
-		Report report = new Report(service);
+	public static void validate(Service service, ServiceReport report) {
 		ArrayList<String[]> inputs = InputSelector.select(service);
 		for(String[] input : inputs) {
 			String filename = input[0];
 			String content = input[1];
-			System.out.println(filename);
+			System.out.println("   " + filename);
 			try {
-				String lif = service.execute(content);
+				//
+				String response = service.execute(content);
+				report.addResponse(filename, response);
 				runTests(service, filename, report);
 			} catch (IOException ex) {
 				Logger.getLogger(ServiceValidator.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,10 +87,9 @@ public class ServiceValidator {
 				Logger.getLogger(ServiceValidator.class.getName()).log(Level.SEVERE, null, ex);
 			}
 		}
-		report.prettyPrint();
 	}
 	
-	public static void runTests(Service service, String lif, Report report) 
+	public static void runTests(Service service, String lif, ServiceReport report) 
 			throws InstantiationException, IllegalAccessException {
 		
 		for (Class theClass : ServiceTest.testclasses()) {

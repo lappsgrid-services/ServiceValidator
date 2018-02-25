@@ -1,12 +1,12 @@
 package edu.brandeis.lapps.validator.tests;
 
-import edu.brandeis.lapps.validator.Report;
+import edu.brandeis.lapps.validator.ServiceReport;
 import edu.brandeis.lapps.validator.Service;
 
 
 public class ServiceTest {
 
-	public void run(Service service, String filename, Report report) {
+	public void run(Service service, String filename, ServiceReport report) {
 		throw new UnsupportedOperationException("The run method has not been implemented.");
 	}
 
@@ -31,6 +31,7 @@ public class ServiceTest {
 	public static Class[] testclasses() {
 		return new Class[] {
 			TestFormat.class,
+			TestThatAlwaysFails.class,
 			//TestJsonSchema.class,
 			//TestServiceRequirements.class
 		};

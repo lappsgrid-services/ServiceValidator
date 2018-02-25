@@ -120,10 +120,10 @@ public class Service {
 	/**
 	 * Execute the service on a JSON string with discriminator and payload.
 	 * 
-	 * @param inputString
+	 * @param inputString the string the service will run on
 	 * 
 	 * @return
-	 * Returns a String but we really run this for the side effect of putting
+	 * Returns a String but we also run this for the side effect of putting
 	 * a JSONObject instance in the Service's response instance variable.
 	 * 
 	 * @throws IOException 
