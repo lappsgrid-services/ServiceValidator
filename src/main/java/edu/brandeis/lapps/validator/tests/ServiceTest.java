@@ -32,8 +32,9 @@ public class ServiceTest {
 		return new Class[] {
 			TestFormat.class,
 			TestThatAlwaysFails.class,
-			//TestJsonSchema.class,
-			//TestServiceRequirements.class
+			TestJsonSchema.class,
+			TestServiceRequirements.class,
+			TestLanguage.class
 		};
 	}
 	
